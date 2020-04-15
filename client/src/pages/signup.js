@@ -9,13 +9,12 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
-import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { createMuiTheme, withStyles, makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import { green, purple } from '@material-ui/core/colors';
-import API from "../utils/api"; 
+import API from "../utils/api";
 
 function Copyright() {
   return (
@@ -182,8 +181,8 @@ export default function SignInSide() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign up for an account below :)
-        </Typography>
+            Sign up for an account below :
+          </Typography>
           <form className={classes.form} noValidate onSubmit={handleSubmit}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
@@ -250,8 +249,8 @@ export default function SignInSide() {
                 variant="contained"
                 color="primary"
                 className={classes.submit}
-                >Sign Me Up
-          </Button>
+              >Sign Me Up
+              </Button>
             </ThemeProvider>
             <Grid container justify="flex-end">
               {/* <Grid item>
@@ -264,6 +263,6 @@ export default function SignInSide() {
         </div>
 
       </Grid>
-    </Grid>
-  );
+    </Grid >
+  )
 }
