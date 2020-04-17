@@ -70,39 +70,45 @@ class SpotifyPage extends Component {
   }
 
 
-render() {
-  return (
-    <div>
-      <Nav/>
-
-      <Row>
-        <Col className="mt-5 p-5" size="md-6">
-          <div> Now Playing: 
-          {this.state.nowPlaying.name === "" ? "" : this.state.nowPlaying.name}
-          </div>
-          <div><img style={{ width: 100}} src={this.state.nowPlaying.image}></img></div>
-        </Col>
-        <Col className="mt-5 p-5" size="md-6">
-        <button onClick={() => this.getNowPlaying()}>Check Now Playing</button>
-        </Col>
-      </Row>
-      <Row>
-        <Col className="mt-5 p-5" size="md-4">
-          <button onClick={() => this.getFeatured()}>Get Featured PlayLists!</button>
-        </Col>
-        <Col className="mt-5 p-5" size="md-4">
-          <div>Playlist name:</div>
-          { this.state.featuredPlayLists.length > 1 ? this.state.featuredPlayLists.map(featuredItem => {
-          return <div>{featuredItem.name}<button onClick={() => this.getId(featuredItem.id)} key={featuredItem.id} >play me!</button></div>;
-          }) : ""}
+  render() {
+    return (
+      <div>
+        <Nav/>
+      <div className="container">
+        <Row>
+          <Col className="mt-5 p-5" size="md-12">
+            <a href="http://localhost:8888"><button>Log in with Spotify</button></a>
+          </Col>
+        </Row>
+        <Row>
+          <Col className="mt-5 p-5" size="md-6">
+            <button onClick={() => this.getNowPlaying()}>Check Now Playing</button>
+          </Col>
+          <Col className="mt-5 p-5" size="md-6">
+            <div> Now Playing: 
+            {this.state.nowPlaying.name === "" ? "" : this.state.nowPlaying.name}
+            </div>
+            <div><img style={{ width: 100}} src={this.state.nowPlaying.image}></img></div>
+          </Col>
+        </Row>
+        <Row>
+          <Col className="mt-5 p-5" size="md-4">
+            <button onClick={() => this.getFeatured()}>Get Featured PlayLists!</button>
           </Col>
           <Col className="mt-5 p-5" size="md-4">
-            <iframe src={this.state.currentURI_ID} width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-          </Col>
-      </Row>
-    </div>
-  );
+            <div>Playlist name:</div>
+            { this.state.featuredPlayLists.length > 1 ? this.state.featuredPlayLists.map(featuredItem => {
+            return <div>{featuredItem.name}<button variant="contained" onClick={() => this.getId(featuredItem.id)} key={featuredItem.id} >play me!</button></div>;
+            }) : ""}
+            </Col>
+            <Col className="mt-5 p-5" size="md-4">
+              <iframe src={this.state.currentURI_ID} width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            </Col>
+        </Row>
+        </div>
+      </div>
+    );
+    }
   }
-}
 
 export default SpotifyPage;
