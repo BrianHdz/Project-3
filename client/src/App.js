@@ -3,8 +3,9 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import SignUp from "./pages/signup";
 
 import HomePage from "./pages/homePage";
-import SpotifyPage from "./pages/spotifyPage"
-import YoutubePage from "./pages/youtubePage.js"
+import SpotifyPage from "./pages/spotifyPage";
+import YoutubePage from "./pages/youtubePage.js";
+
 
 
 
@@ -15,31 +16,31 @@ function App() {
 
 
       <Router>
-      <div>
+        <div>
 
-        <Switch>
+          <Switch>
 
-          <Route exact path={["/", "/signup"]}>
-          <SignUp />
-          </Route>
+            <Route exact path={["/", "/signup"]}>
+              <SignUp />
+            </Route>
 
-          <Route exact path={"/homepage"}>
-            <HomePage />
-          </Route>
+            <Route exact path={"/homepage"}>
+              <HomePage />
+            </Route>
 
-          
-          <Route exact path={"/spotifypage"}>
-            <SpotifyPage/>
-          </Route>
 
-          
-          <Route exact path={"/youtubepage"}>
-            <YoutubePage/>
-          </Route>
+            <Route exact path={"/spotifypage"}>
+              <SpotifyPage />
+            </Route>
 
-        </Switch>
-      </div>
-    </Router>
+
+            <Route exact path={"/youtubepage"}>
+              <YoutubePage />
+            </Route>
+
+          </Switch>
+        </div>
+      </Router>
 
 
     </div>
