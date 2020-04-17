@@ -1,6 +1,7 @@
 import React, {Component, useEffect, useState} from 'react';
 // import './App.css';
 import Spotify from "spotify-web-api-js"
+import Nav from "../components/Nav"
 
 const spotifyWebAPI = new Spotify();
 
@@ -68,7 +69,8 @@ class SpotifyPage extends Component {
 
 render() {
   return (
-    <div className="App">
+    <div>
+      <Nav/>
       <a href="http://localhost:8888"><button>Log in with Spotify</button></a>
       
       <div> Now Playing: 
