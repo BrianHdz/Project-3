@@ -1,7 +1,7 @@
 import React, {Component, useEffect, useState} from 'react';
 // import './App.css';
 import Spotify from "spotify-web-api-js"
-import Nav from "../components/Nav/index"
+import Nav from "../components/Nav"
 
 const spotifyWebAPI = new Spotify();
 
@@ -16,7 +16,8 @@ class SpotifyPage extends Component {
         name: "Not Checked",
         image: ""
       },
-      featuredPlayLists: []
+      featuredPlayLists: [],
+      currentURI_ID: ""
     }
     if(params.access_token) {
       spotifyWebAPI.setAccessToken([params.access_token])
@@ -35,7 +36,8 @@ class SpotifyPage extends Component {
   getNowPlaying() {
     // setTimeout
     spotifyWebAPI.getMyCurrentPlaybackState()
-    .then((response) => {
+    .then((response) => {   
+      console.log(response)
       this.setState({
         nowPlaying: {
           name: response.item.name.name,
@@ -49,24 +51,53 @@ class SpotifyPage extends Component {
 
     spotifyWebAPI.getFeaturedPlaylists()
     .then((response) => {
-      this.setState({
-        featuredPlayLists: response.playlists
-      })
+      console.log(response)
       console.log(response.playlists.items)
-      
+
+      this.setState({
+        featuredPlayLists: response.playlists.items
+      })
+
     })
   }
+
+  getId(key) {
+    this.setState({
+      currentURI_ID: "https://open.spotify.com/embed/playlist/"+ key
+    })
+  }
+
 
 render() {
   return (
     <div>
-        <Nav/>
+      <Nav/>
       <a href="http://localhost:8888"><button>Log in with Spotify</button></a>
-      <div> Now Playing: {this.state.nowPlaying.name}</div>
+      
+      <div> Now Playing: 
+
+      {this.state.nowPlaying.name === "" ? "" : this.state.nowPlaying.name}
+
+      </div>
+
       <div><img style={{ width: 100}} src={this.state.nowPlaying.image}></img></div>
       <button onClick={() => this.getNowPlaying()}>Check Now Playing</button>
       <button onClick={() => this.getFeatured()}>Get Featured PlayLists!</button>
-      {/* <div>Playlist name: {this.state.featuredPlayLists}</div> */}
+      
+
+      <div>Playlist name:</div>
+      <div>_________________</div>
+      
+
+
+      { this.state.featuredPlayLists.length > 1 ? this.state.featuredPlayLists.map(featuredItem => {
+        return <div>{featuredItem.name}<button onClick={() => this.getId(featuredItem.id)} key={featuredItem.id} >play me!</button></div>;
+      }) : ""}
+
+<iframe src={this.state.currentURI_ID} width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+
+
+
 {/* trying to figure out how to save an array of objects to state, may have to  */}
     </div>
   );
