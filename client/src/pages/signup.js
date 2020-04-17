@@ -244,6 +244,7 @@ export default function SignInSide() {
             </Grid>
             <ThemeProvider theme={theme}>
               <Button
+                href="/homepage"
                 type="submit"
                 fullWidth
                 variant="contained"
