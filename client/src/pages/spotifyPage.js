@@ -59,7 +59,7 @@ class SpotifyPage extends Component {
 
 render() {
   return (
-    <div className="App">
+    <div>
         <Nav/>
       <a href="http://localhost:8888"><button>Log in with Spotify</button></a>
       <div> Now Playing: {this.state.nowPlaying.name}</div>
