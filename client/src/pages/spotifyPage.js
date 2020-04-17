@@ -13,7 +13,7 @@ class SpotifyPage extends Component {
     this.state = {
       loggedIn: params.access_token ?  true : false,
       nowPlaying: {
-        name: "",
+        name: "Not Checked",
         image: ""
       },
       featuredPlayLists: [],
@@ -37,6 +37,7 @@ class SpotifyPage extends Component {
     // setTimeout
     spotifyWebAPI.getMyCurrentPlaybackState()
     .then((response) => {   
+      console.log(response)
       this.setState({
         nowPlaying: {
           name: response.item.name.name,
