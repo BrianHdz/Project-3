@@ -3,8 +3,9 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import SignUp from "./pages/signup";
 
 import HomePage from "./pages/homePage";
-import SpotifyPage from "./pages/spotifyPage"
-import YoutubePage from "./pages/youtubePage.js"
+import SpotifyPage from "./pages/spotifyPage";
+import YoutubePage from "./pages/youtubePage.js";
+
 
 import ReactMediaVisualizer from './components/Visualizer'
 import Main from './components/Main/index.js'
@@ -17,31 +18,31 @@ function App() {
 
 
       <Router>
-      <div>
+        <div>
 
-        <Switch>
+          <Switch>
 
-          <Route exact path={["/", "/signup"]}>
-          <SignUp />
-          </Route>
+            <Route exact path={["/", "/signup"]}>
+              <SignUp />
+            </Route>
 
-          <Route exact path={"/homepage"}>
-            <HomePage />
-          </Route>
+            <Route exact path={"/homePage"}>
+              <HomePage />
+            </Route>
 
-          
-          <Route exact path={"/spotifypage"}>
-            <SpotifyPage/>
-          </Route>
 
-          
-          <Route exact path={"/youtubepage"}>
-            <YoutubePage/>
-          </Route>
+            <Route exact path={"/spotifyPage"}>
+              <SpotifyPage />
+            </Route>
 
-        </Switch>
-      </div>
-    </Router>
+
+            <Route exact path={"/youtubePage"}>
+              <YoutubePage />
+            </Route>
+
+          </Switch>
+        </div>
+      </Router>
 
 
     </div>
