@@ -6,7 +6,9 @@ import HomePage from "./pages/homePage";
 import SpotifyPage from "./pages/spotifyPage"
 import YoutubePage from "./pages/youtubePage.js"
 
-
+import ReactMediaVisualizer from './components/Visualizer'
+import Main from './components/Main/index.js'
+import Navbar from './components/Navbar/index.js'
 
 function App() {
   return (

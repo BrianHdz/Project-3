@@ -1,7 +1,8 @@
 import React, {Component, useEffect, useState} from 'react';
 // import './App.css';
 import Spotify from "spotify-web-api-js"
-import Nav from "../components/Nav/index"
+// import Nav from "../components/Nav/index"
+import Visualizer from '../components/Visualizer';
 
 const spotifyWebAPI = new Spotify();
 
@@ -68,7 +69,15 @@ render() {
       <button onClick={() => this.getFeatured()}>Get Featured PlayLists!</button>
       {/* <div>Playlist name: {this.state.featuredPlayLists}</div> */}
 {/* trying to figure out how to save an array of objects to state, may have to  */}
+
+
+
     </div>
+    
+    
+    
+      
+    
   );
   }
 }
