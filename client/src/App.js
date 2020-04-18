@@ -24,17 +24,17 @@ function App() {
               <SignUp />
             </Route>
 
-            <Route exact path={"/homepage"}>
+            <Route exact path={"/homePage"}>
               <HomePage />
             </Route>
 
 
-            <Route exact path={"/spotifypage"}>
+            <Route exact path={"/spotifyPage"}>
               <SpotifyPage />
             </Route>
 
 
-            <Route exact path={"/youtubepage"}>
+            <Route exact path={"/youtubePage"}>
               <YoutubePage />
             </Route>
 

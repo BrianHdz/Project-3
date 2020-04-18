@@ -11,7 +11,7 @@ export class Provider extends Component {
     };
 
     componentDidMount() {
-        axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&regionCode=us&type=video&chart=mostPopular&maxResults=10&key=${process.env.REACT_APP_YT_KEY}`)
+        axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&regionCode=us&type=video&chart=mostPopular&maxResults=10&key=`)
             .then(res => {
                 console.log(res.data)
                 this.setState({ video_list: res.data.items })
