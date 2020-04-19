@@ -10,6 +10,7 @@ export default {
   signIn: function (UserData) {
     // Enter code to read from database and 
     // if E-mail and password match, sign the user in.
+    // See Wk20 Act22 client/src/utils/API.js
   
   },
 };

@@ -5,6 +5,8 @@ import Nav from "../components/Nav"
 import Row from "../components/Row"
 import Col from "../components/Col"
 
+import Visualizer from '../components/Visualizer';
+
 const spotifyWebAPI = new Spotify();
 
 class SpotifyPage extends Component {
