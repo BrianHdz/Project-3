@@ -98,12 +98,21 @@ class SpotifyPage extends Component {
           <Col className="mt-5 p-5" size="md-4">
             <h2>Playlist name:</h2>
             { this.state.featuredPlayLists.length > 1 ? this.state.featuredPlayLists.map(featuredItem => {
-            return <li className="list-group-item"><h5>{featuredItem.name}</h5><button type="button" className="btn btn-dark" onClick={() => this.getId(featuredItem.id)} key={featuredItem.id} ><i class="fas fa-play"></i></button></li>;
+            return <li className="list-group-item">{featuredItem.name}<button type="button" className="btn btn-dark" onClick={() => this.getId(featuredItem.id)} key={featuredItem.id} ><i class="fas fa-play"></i></button></li>;
             }) : ""}
             </Col>
             <Col className="mt-5 p-5" size="md-4">
               <iframe src={this.state.currentURI_ID} width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
             </Col>
+        </Row>
+        <Row>
+          <Col size="md-6">
+           <h2>Search</h2>
+           <input className="form-control" type="text" placeholder="Search for a Song/Playlist"></input>
+           <button className="btn btn-dark">Click me to Search</button>
+          </Col>
+          <Col size="md-6">
+          </Col>
         </Row>
         </div>
       </div>

@@ -7,7 +7,7 @@ function Nav() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <Link className="navbar-brand" to="/">
-        App Name
+        Societé
       </Link>
       <div>
         <ul className="navbar-nav">
