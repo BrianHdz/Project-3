@@ -131,7 +131,7 @@
 
           document.getElementById('login-button').addEventListener('click', function() {
 
-            var client_id = '3e0ec02d26d940389d29340b4da5bd88'; // Your client id
+            var client_id = clientId; // Your client id
             var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
 
             var state = generateRandomString(16);
