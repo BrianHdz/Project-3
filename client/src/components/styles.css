@@ -5,6 +5,17 @@
     box-sizing: border-box;
   }
   
+  body {
+    background-color: lightblue;
+    background-image: url("../images/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .a{
+    height: 200px;
+  }
+
   main {
     height: 100%;
     flex-grow: 1;
@@ -26,7 +37,7 @@
     padding-left: 50px;
     display: flex;
     align-items: center;
-    background: #1c2532;
+    /*background: #1c2532;*/
   }
   
   nav .links {
