@@ -4,24 +4,29 @@ import { Consumer } from '../../context';
 
 class Search extends Component {
     state = {
-        videoTitle: ''
+        videoTitle: '',
+        duration: 'any',
+        resultsOrder: 'date',
+        definition: 'any',
+        safeSearch: 'none',
     };
 
     findVideo = (dispatch, e) => {
         e.preventDefault();
 
-        axios.get(`https://www.googleapis.com/youtube/v3/search?&key=${process.env.REACT_APP_YT_KEY}&part=snippet&type=video&maxResults=10&q=${this.state.videoTitle}`)
+        axios.get(`https://www.googleapis.com/youtube/v3/search?&key=${process.env.REACT_APP_YT_KEY}&part=snippet&type=video&maxResults=10&q=${this.state.videoTitle}&videoDuration=${this.state.duration}&order=${this.state.resultsOrder}&videoDefinition=${this.state.definition}&safeSearch=${this.state.safeSearch}`)
             .then(res => {
                 console.log(res.data);
                 dispatch({
                     type: 'SEARCH_VIDEOS',
                     payload: res.data.items
                 });
-                this.setState({ videoTitle: '' })
+                this.setState({
+                    videoTitle: '', duration: '', resultsOrder: '', definition: '', safeSearch: ''
+                })
             })
             .catch(err => console.log(err));
     }
-
     onChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
     }
@@ -44,46 +49,42 @@ class Search extends Component {
                                     />
                                 </div>
                                 <div className="form-inline mb-3">
-                                    <label for="channelType" className="control-label mr-1 h6" name='channelType'>Channel Type:</label>
+                                    <label htmlFor='resultsOrder' className="control-label mr-2 h6">Results Order:</label>
                                     <div>
-                                        <select className="form-control mr-1" id="channelType">
-                                            <option>Any</option>
-                                            <option>Show</option>
+                                        <select className="form-control mr-4" id='resultsOrder' name='resultsOrder' value={this.state.resultsOrder}
+                                            onChange={this.onChange}>
+                                            <option value='date'>Date</option>
+                                            <option value='rating'>Rating</option>
+                                            <option value='relevance'>Relevance</option>
+                                            <option value='title'>Title</option>
+                                            <option value='viewCount'>View Count</option>
                                         </select>
                                     </div>
-                                    <label for='resultsOrder' className="control-label mr-1 h6" name='resultsOrder'>Results Order:</label>
+                                    <label htmlFor='safeSearch' className="control-label mr-2 h6">Safe Search:</label>
                                     <div>
-                                        <select className="form-control mr-1" id='resultsOrder'>
-                                            <option>Date</option>
-                                            <option>Rating</option>
-                                            <option>Relevance</option>
-                                            <option>Title</option>
-                                            <option>View Count</option>
+                                        <select className="form-control mr-4" id='safeSearch' name='safeSearch' value={this.state.safeSearch}
+                                            onChange={this.onChange}>
+                                            <option value='none'>None</option>
+                                            <option value='moderate'>Moderate</option>
+                                            <option value='strict'>Strict</option>
                                         </select>
                                     </div>
-                                    <label for='safeSearch' className="control-label mr-1 h6" name='safeSearch'>Safe Search:</label>
+                                    <label htmlFor='definition' className="control-label mr-2 h6">Video Definition:</label>
                                     <div>
-                                        <select className="form-control mr-1" id='safeSearch'>
-                                            <option>None</option>
-                                            <option>Moderate</option>
-                                            <option>Strict</option>
+                                        <select className="form-control mr-4" id='definition' name='definition' value={this.state.definition}
+                                            onChange={this.onChange}>
+                                            <option value='any'>Any</option>
+                                            <option value='high'>High</option>
+                                            <option value='standard'>Standard</option>
                                         </select>
                                     </div>
-                                    <label for='definition' className="control-label mr-1 h6" name='definition'>Definition:</label>
+                                    <label htmlFor='duration' className="control-label mr-2 h6">Video Duration:</label>
                                     <div>
-                                        <select className="form-control mr-1" id='definition'>
-                                            <option>Any</option>
-                                            <option>High</option>
-                                            <option>Standard</option>
-                                        </select>
-                                    </div>
-                                    <label for='duration' className="control-label mr-1 h6" name='duration'>Duration:</label>
-                                    <div>
-                                        <select className="form-control mr-1" id='duration'>
-                                            <option>Any</option>
-                                            <option>Long</option>
-                                            <option>Medium</option>
-                                            <option>Short</option>
+                                        <select className="form-control" id='duration' name='duration' defaultValue={this.state.duration} onChange={this.onChange}>
+                                            <option value='any'>Any</option>
+                                            <option value='long'>Long</option>
+                                            <option value='medium'>Medium</option>
+                                            <option value='short'>Short</option>
                                         </select>
                                     </div>
                                 </div>
