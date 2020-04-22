@@ -127,14 +127,14 @@ class SpotifyPage extends Component {
           </Col>
         </Row>
         <Row>
-          <Col className="mt-5 p-5" size="md-4">
+          {/* <Col className="mt-5 p-5" size="md-4">
             <button type="button" className="btn btn-dark" onClick={() => this.getNowPlaying()}>Check Now Playing</button>
           </Col>
           <Col className="mt-5 p-5" size="md-4">
             <div> Now Playing: 
             </div>
             <div><img style={{ width: 100}} src={this.state.nowPlaying.image}></img></div>
-          </Col>
+          </Col> */}
           <Col className="mt-5 p-5" size="md-4">
               <iframe src={this.state.currentURI_ID} width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
             </Col>
