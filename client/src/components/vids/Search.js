@@ -43,6 +43,50 @@ class Search extends Component {
                                         onChange={this.onChange}
                                     />
                                 </div>
+                                <div className="form-inline mb-3">
+                                    <label for="channelType" className="control-label mr-1 h6" name='channelType'>Channel Type:</label>
+                                    <div>
+                                        <select className="form-control mr-1" id="channelType">
+                                            <option>Any</option>
+                                            <option>Show</option>
+                                        </select>
+                                    </div>
+                                    <label for='resultsOrder' className="control-label mr-1 h6" name='resultsOrder'>Results Order:</label>
+                                    <div>
+                                        <select className="form-control mr-1" id='resultsOrder'>
+                                            <option>Date</option>
+                                            <option>Rating</option>
+                                            <option>Relevance</option>
+                                            <option>Title</option>
+                                            <option>View Count</option>
+                                        </select>
+                                    </div>
+                                    <label for='safeSearch' className="control-label mr-1 h6" name='safeSearch'>Safe Search:</label>
+                                    <div>
+                                        <select className="form-control mr-1" id='safeSearch'>
+                                            <option>None</option>
+                                            <option>Moderate</option>
+                                            <option>Strict</option>
+                                        </select>
+                                    </div>
+                                    <label for='definition' className="control-label mr-1 h6" name='definition'>Definition:</label>
+                                    <div>
+                                        <select className="form-control mr-1" id='definition'>
+                                            <option>Any</option>
+                                            <option>High</option>
+                                            <option>Standard</option>
+                                        </select>
+                                    </div>
+                                    <label for='duration' className="control-label mr-1 h6" name='duration'>Duration:</label>
+                                    <div>
+                                        <select className="form-control mr-1" id='duration'>
+                                            <option>Any</option>
+                                            <option>Long</option>
+                                            <option>Medium</option>
+                                            <option>Short</option>
+                                        </select>
+                                    </div>
+                                </div>
                                 <button type='submit' className='btn btn-primary btn-lg btn-block mb-5'>Search For Video</button>
                             </form>
                         </div>
