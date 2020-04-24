@@ -101,19 +101,10 @@ class SpotifyPage extends Component {
 
 
   getId(key ) {
-
-
-
       this.setState({
         currentURI_ID: "https://open.spotify.com/embed/playlist/"+ key
       })
-
     }
-
-
-  
-
-
 
 
   render() {
@@ -122,8 +113,25 @@ class SpotifyPage extends Component {
         <Nav/>
       {/* <div className="container"> */}
         <Row>
-          <Col className="mt-5 p-5" size="md-12">
+          
+          <Col className="mt-5 p-5" size="md-4">
             <a href="http://localhost:8888"><button type="button" className="btn btn-dark">Log in with Spotify</button></a>
+            <button type="button" className="btn btn-dark d-block mt-3" onClick={() => this.getFeatured()}>Get Featured PlayLists!</button>
+            { this.state.featuredPlayLists.length > 1 ? this.state.featuredPlayLists.map(featuredItem => {
+            return <li className="list-group-item">{featuredItem.name}<button type="button" className="btn btn-dark" onClick={() => this.getId(featuredItem.id)} key={featuredItem.id} ><i class="fas fa-play"></i></button></li>;
+            }) : ""}
+          </Col>
+
+          <Col className="mt-5 p-5" size="md-4">
+          <h2 className="bg-light">Search</h2>
+          <input onChange={this.handleInputChange} name="search" value={this.state.search}  className="form-control" type="text" placeholder="Search Playlist"></input>
+          <button onClick={this.handleFormSubmit}  className="btn btn-dark">Click me to Search</button>
+            { this.state.searchedItems.length > 1 ? this.state.searchedItems.map(searchedItems => {
+            return <li className="list-group-item">{searchedItems.name}<button type="button" className="btn btn-dark" onClick={() => this.getId(searchedItems.id)} key2={searchedItems.id} ><i class="fas fa-play"></i></button></li>}) : ""}
+          </Col>
+
+          <Col className="mt-5 p-5" size="md-4">
+          <iframe src={this.state.currentURI_ID} width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
           </Col>
         </Row>
         <Row>
@@ -135,43 +143,6 @@ class SpotifyPage extends Component {
             </div>
             <div><img style={{ width: 100}} src={this.state.nowPlaying.image}></img></div>
           </Col> */}
-          <Col className="mt-5 p-5" size="md-4">
-              <iframe src={this.state.currentURI_ID} width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-            </Col>
-        </Row>
-        <Row>
-
-          <Col className="mt-5 p-5" size="md-3">
-            <button type="button" className="btn btn-dark" onClick={() => this.getFeatured()}>Get Featured PlayLists!</button>
-          </Col>
-
-          <Col className="mt-5 p-5" size="md-3">
-            <h2>Playlist name:</h2>
-            { this.state.featuredPlayLists.length > 1 ? this.state.featuredPlayLists.map(featuredItem => {
-            return <li className="list-group-item">{featuredItem.name}<button type="button" className="btn btn-dark" onClick={() => this.getId(featuredItem.id)} key={featuredItem.id} ><i class="fas fa-play"></i></button></li>;
-            }) : ""}
-            </Col>
-
-            <Col className="mt-5 p-5" size="md-3">
-           <h2>Search</h2>
-           <input onChange={this.handleInputChange} name="search" value={this.state.search}  className="form-control" type="text" placeholder="Search Playlist"></input>
-           <button onClick={this.handleFormSubmit}  className="btn btn-dark">Click me to Search</button>
-          </Col>
-
-          <Col className="mt-5 p-5" size="md-3">
-            <h2>Search Results:</h2>
-            { this.state.searchedItems.length > 1 ? this.state.searchedItems.map(searchedItems => {
-            return <li className="list-group-item">{searchedItems.name}<button type="button" className="btn btn-dark" onClick={() => this.getId(searchedItems.id)} key2={searchedItems.id} ><i class="fas fa-play"></i></button></li>}) : ""}
-            </Col>
-
-
-
-
-        </Row>
-        <Row>
-
-          <Col size="md-6">
-          </Col>
         </Row>
         </div>
       // </div>
