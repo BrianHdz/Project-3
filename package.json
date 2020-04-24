@@ -27,8 +27,9 @@
     "mongoose": "^5.3.16",
     "morgan": "^1.10.0",
     "node-fetch": "^2.6.0",
-    "react-media-visualizer": "^1.1.1",
+    "react-grid-layout": "^0.18.3",
     "react-iframe": "^1.8.0",
+    "react-media-visualizer": "^1.1.1",
     "react-router-dom": "^5.1.2",
     "react-stack-grid": "^0.7.1",
     "spotify-web-api-js": "^1.2.0"
