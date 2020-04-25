@@ -28,9 +28,6 @@ function HomePage() {
           <div></div>
           <div></div>
           <div></div>
-
-
-          <div></div>
           <MessageContainer />
         </StackGrid>
       </div>

@@ -16,13 +16,12 @@ class Search extends Component {
 
         axios.get(`https://www.googleapis.com/youtube/v3/search?&key=${process.env.REACT_APP_YT_KEY}&part=snippet&type=video&maxResults=10&q=${this.state.videoTitle}&videoDuration=${this.state.duration}&order=${this.state.resultsOrder}&videoDefinition=${this.state.definition}&safeSearch=${this.state.safeSearch}`)
             .then(res => {
-                console.log(res.data);
                 dispatch({
                     type: 'SEARCH_VIDEOS',
                     payload: res.data.items
                 });
                 this.setState({
-                    videoTitle: '', duration: '', resultsOrder: '', definition: '', safeSearch: ''
+                    videoTitle: '', duration: 'any', resultsOrder: 'date', definition: 'any', safeSearch: 'none'
                 })
             })
             .catch(err => console.log(err));
