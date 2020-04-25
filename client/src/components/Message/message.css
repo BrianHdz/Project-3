@@ -12,8 +12,7 @@ a {
 
 .message-container {
   /* border: 1px solid #dad7d7; */
-  max-width: 1000px;
-  margin: 0 auto;
+  width: 400px;
   padding: 10px;
   background-color: white;
   max-height: 450px;
