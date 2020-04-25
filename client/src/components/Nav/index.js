@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 function Nav() {
   return (
     <nav className="navbar navbar-dark navbar-expand-lg bg-dark" role="navigation">
-      <Link className="navbar-brand" to="/">
+      <Link className="navbar-brand" to="/homePage">
         Societé
       </Link>
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,18 +15,6 @@ function Nav() {
       </button>
       <div className="collapse navbar-collapse" className="navbarNavDropdown">
         <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
-          <li className="nav-item">
-            <Link
-              to="/homePage"
-              className={
-                window.location.pathname === "/homePage"
-                  ? "nav-link active"
-                  : "nav-link"
-              }
-            >
-              Home 
-            </Link>
-          </li>
           <li className="nav-item">
             <Link
               to="/spotifyPage"
