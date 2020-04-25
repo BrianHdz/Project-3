@@ -136,7 +136,7 @@ class SpotifyPage extends Component {
           </Col>
 
           <Col className="mt-3 p-3" size="md-4">
-          <iframe src={this.state.currentURI_ID} width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          <iframe src={this.state.currentURI_ID} width="300" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
           </Col>
         </Row>
         <Row>

@@ -1,16 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./style.css";
+// import "./style.css";
 
 // Depending on the current path, this component sets the "active" class on the appropriate navigation link item
 function Nav() {
   return (
-    <nav className="navbar navbar-dark navbar-expand-lg bg-dark">
+    <nav className="navbar navbar-dark navbar-expand-lg bg-dark" role="navigation">
       <Link className="navbar-brand" to="/">
         Societé
       </Link>
-      <div>
-        <ul className="navbar-nav">
+      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span className="navbar-toggler-icon"></span>
+        <span className="sr-only">Toggle navigation</span>
+      </button>
+      <div className="collapse navbar-collapse" className="navbarNavDropdown">
+        <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
           <li className="nav-item">
             <Link
               to="/homePage"
@@ -20,7 +24,7 @@ function Nav() {
                   : "nav-link"
               }
             >
-              Home
+              Home 
             </Link>
           </li>
           <li className="nav-item">
