@@ -21,7 +21,7 @@ class MessageContainer extends Component {
                 {/* using a fragment so we don't add another element (div) to the DOM */}
                 <Fragment>
                     <LoadingBar />
-                    <div className="container">
+                    <div className="container message-container">
                         <MessageNav />
                         {this.props.loading === true ? null : (
                             <div>
