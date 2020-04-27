@@ -19,6 +19,10 @@ export default {
     // See Wk20 Act22 client/src/utils/API.js
 
   },
+
+  createSpotify: function(SpotifyData) {
+    return axios.post("/api/spotify", SpotifyData)
+  }
 };
 
 export function getInitialData() {

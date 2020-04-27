@@ -5,6 +5,8 @@ import Nav from "../components/Nav"
 import Row from "../components/Row"
 import Col from "../components/Col"
 import Visualizer from '../components/Visualizer';
+import API from "../utils/api";
+
 const spotifyWebAPI = new Spotify();
 
 
@@ -22,7 +24,8 @@ class SpotifyPage extends Component {
       featuredPlayLists: [],
       currentURI_ID: "",
       search: "",
-      searchedItems: []
+      searchedItems: [],
+      savedItem: ""
     }
     if(params.access_token) {
       spotifyWebAPI.setAccessToken([params.access_token])
@@ -99,11 +102,19 @@ class SpotifyPage extends Component {
   }
 
 
-  getId(key ) {
+  getId(key) {
       this.setState({
         currentURI_ID: "https://open.spotify.com/embed/playlist/"+ key
       })
     }
+
+  saveFavorites(key) {
+      API.createSpotify({
+        uri:key
+      }).then(console.log("saved playlist"))
+      .catch((err) => console.log(err));
+  };
+
 
 
   render() {
@@ -123,7 +134,7 @@ class SpotifyPage extends Component {
 
             <button type="button" className="btn btn-dark d-block mt-3" onClick={() => this.getFeatured()}>Get Featured PlayLists!</button>
             { this.state.featuredPlayLists.length > 1 ? this.state.featuredPlayLists.map(featuredItem => {
-            return <li className="list-group-item">{featuredItem.name}<button type="button" className="btn btn-dark ml-2" onClick={() => this.getId(featuredItem.id)} key={featuredItem.id} ><i class="fas fa-play"></i></button><button key={featuredItem.id} className="btn btn-primary"><i class="fas fa-save"></i></button></li>;
+            return <li className="list-group-item">{featuredItem.name}<button type="button" className="btn btn-dark ml-2" onClick={() => this.getId(featuredItem.id)} key={featuredItem.id} ><i class="fas fa-play"></i></button><button onClick={() => this.saveFavorites(featuredItem.id)}  className="btn btn-primary"><i class="fas fa-save"></i></button></li>;
             }) : ""}
           </Col>
 
@@ -132,7 +143,7 @@ class SpotifyPage extends Component {
           <input onChange={this.handleInputChange} name="search" value={this.state.search}  className="form-control" type="text" placeholder="Search Playlist"></input>
           <button onClick={this.handleFormSubmit}  className="btn btn-dark">Click me to Search</button>
             { this.state.searchedItems.length > 1 ? this.state.searchedItems.map(searchedItems => {
-            return <li className="list-group-item">{searchedItems.name}<button type="button" className="btn btn-dark ml-1" onClick={() => this.getId(searchedItems.id)} key={searchedItems.id} ><i className="fas fa-play"></i></button><button key={searchedItems.id} className="btn btn-primary"><i class="fas fa-save"></i></button></li>}) : ""}
+            return <li className="list-group-item">{searchedItems.name}<button type="button" className="btn btn-dark ml-1" onClick={() => this.getId(searchedItems.id)} key={searchedItems.id} ><i className="fas fa-play"></i></button><button onClick={() => this.saveFavorites(searchedItems.id)} className="btn btn-primary"><i class="fas fa-save"></i></button></li>}) : ""}
           </Col>
 
           <Col className="mt-3 p-3" size="md-4">
