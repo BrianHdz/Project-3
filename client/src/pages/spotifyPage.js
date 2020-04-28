@@ -115,9 +115,6 @@ class SpotifyPage extends Component {
       .catch((err) => console.log(err));
   };
 
-  playPlaylist = () => {
-    spotifyWebAPI.play({"context_uri": "spotify:album:5ht7ItJgpBH7W6vJ5BqpPr"})
-  }
 
 
   render() {
@@ -150,8 +147,7 @@ class SpotifyPage extends Component {
           </Col>
 
           <Col className="mt-3 p-3" size="md-4">
-          {this.state.currentURI_ID === "" ? <h1 className="p-2 card">Player exists here</h1> : <iframe src={this.state.currentURI_ID} width="300" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>}
-          <button onClick={this.playPlaylist} className="btn btn-dark">button</button>
+          <iframe src={this.state.currentURI_ID} width="300" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
           </Col>
         </Row>
         <Row>
