@@ -57,7 +57,7 @@ class NewMessage extends Component {
 
           {/* button is disabled if it's an empty string */}
           <button
-            className="btn btn-secondary"
+            className="btn btn-primary"
             type="submit"
             disabled={text === ""}
           >
