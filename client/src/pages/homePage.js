@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import StackGrid from "react-stack-grid";
 import ylogo from "../images/youtubes.png";
 import slogo from "../images/spotifys.png";
-import tlogo from "../images/twitters.png";
 import Nav from "../components/Nav/index";
 import MessageContainer from "../components/Message/MessageContainer";
 import { render } from "react-dom";
@@ -57,8 +56,8 @@ export default class TestLayout extends React.Component<{}, {width: number, heig
     this.setState({width: 200, height: 200});
   };
 
-  onResize = (event, {element, size, handle}) => {
-    this.setState({width: size.width, height: size.height});
+  onResize = (event, { element, size, handle }) => {
+    this.setState({ width: size.width, height: size.height });
   };
 
   playPlaylist = () => {
