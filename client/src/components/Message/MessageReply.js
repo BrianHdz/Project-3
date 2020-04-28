@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import Message from "./Message";
 import NewMessage from "./NewMessage";
 
-class MessageModal extends Component {
+class MessageReply extends Component {
   render() {
     const { id, replies } = this.props;
 
@@ -40,4 +40,4 @@ function mapStateToProps({ authedUser, messages, users }, props) {
   };
 }
 
-export default connect(mapStateToProps)(MessageModal);
+export default connect(mapStateToProps)(MessageReply);

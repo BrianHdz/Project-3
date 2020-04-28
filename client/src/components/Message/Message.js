@@ -4,7 +4,6 @@ import { formatMessage, formatDate } from "../../utils/helpers";
 import { Link, withRouter } from "react-router-dom";
 
 //importing icons from react-icons
-import { TiArrowBackOutline } from "react-icons/ti";
 import { TiHeartOutline } from "react-icons/ti";
 import { TiHeartFullOutline } from "react-icons/ti";
 
@@ -42,16 +41,7 @@ class Message extends Component {
       return <p>This message doesn't exist</p>;
     }
 
-    const {
-      name,
-      timestamp,
-      text,
-      hasLiked,
-      likes,
-      replies,
-      id,
-      parent,
-    } = message;
+    const { name, timestamp, text, hasLiked, likes, id } = message;
 
     return (
       <Link to={`/message/${id}`} className="message">
@@ -59,21 +49,10 @@ class Message extends Component {
           <div>
             <span className="auth-name">{name}</span>
             <div>{formatDate(timestamp)} </div>
-            {parent && (
-              <button
-                className="replying-to"
-                onClick={(e) => this.toParent(e, parent.id)}
-              >
-                Replying to @{parent.author}
-              </button>
-            )}
             <p className="message-text">{text}</p>
           </div>
 
           <div className="message-icons">
-            <TiArrowBackOutline className="message-icon" />
-            {/* show number only if it's not zero */}
-            <span>{replies !== 0 && replies} </span>
             <button className="heart-button" onClick={this.handleLike}>
               {hasLiked === true ? (
                 <TiHeartFullOutline color="#e0245e" className="message-icon" />

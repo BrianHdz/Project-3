@@ -7,7 +7,6 @@ import { Redirect } from "react-router-dom";
 class NewMessage extends Component {
   state = {
     text: "",
-    toHome: false,
   };
 
   handleChange = (e) => {
@@ -33,7 +32,6 @@ class NewMessage extends Component {
     //reset state to default
     this.setState(() => ({
       text: "",
-      toHome: id ? false : true, //if id is a thing, do not redirect, otherwise, you are at /new, so, after submit, redirect back to home
     }));
   };
 
@@ -41,14 +39,9 @@ class NewMessage extends Component {
     const { text, toHome } = this.state;
     const messageLeft = 280 - text.length;
 
-    // redirect to home view if submitted from /new
-    if (toHome === true) {
-      return <Redirect to="/" />;
-    }
-
     return (
       <div>
-        <h3 className="center">Compose new Message </h3>
+        <h3 className="center">Post A Message </h3>
         <form className="new-message" onSubmit={this.handleSubmit}>
           <textarea
             placeholder="What's happenning"
