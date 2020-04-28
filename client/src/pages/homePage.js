@@ -1,13 +1,11 @@
-import React, { Component } from "react";
-import StackGrid from "react-stack-grid";
-import ylogo from "../images/youtubes.png";
-import slogo from "../images/spotifys.png";
+import React from "react";
 import Nav from "../components/Nav/index";
 import MessageContainer from "../components/Message/MessageContainer";
-import { render } from "react-dom";
-import GridLayout from "react-grid-layout";
+import "./homepageResizable.css";
+import "./homepageGrid.css";
+import "./homepageBoxStyle.css";
 
-const Resizable = require("react-resizable").Resizable; // or,
+const Resizable = require("react-resizable").ResizableBox;
 const ResizableBox = require("react-resizable").ResizableBox;
 
 // function HomePage() {
@@ -41,7 +39,10 @@ const ResizableBox = require("react-resizable").ResizableBox;
 
 // export default HomePage;
 
-export default class TestLayout extends React.Component {
+export default class TestLayout extends React.Component<
+  {},
+  { width: number, height: number }
+> {
   state = { width: 200, height: 200 };
 
   //onClick = () => {
@@ -61,12 +62,11 @@ export default class TestLayout extends React.Component {
           <div className="topseparator"></div>
 
           <ResizableBox
-            className="box-box3a"
-            height={this.state.height}
-            width={this.state.width}
+            className="custom-box box box-box3a"
+            height={200}
+            width={200}
             onResize={this.onResize}
             lockAspectRatio={true}
-            resizeHandles={["sw", "se", "nw", "ne", "w", "e", "n", "s"]}
           >
             <div
               className="box"
@@ -81,13 +81,12 @@ export default class TestLayout extends React.Component {
           </ResizableBox>
           <div className="separator"></div>
 
-          <ResizableBox
-            className="box-box3b"
-            height={this.state.height}
-            width={this.state.width}
+          <Resizable
+            className="custom-box box box-box3b"
+            height={200}
+            width={200}
             onResize={this.onResize}
             lockAspectRatio={true}
-            resizeHandles={["sw", "se", "nw", "ne", "w", "e", "n", "s"]}
           >
             <div
               className="box"
@@ -99,9 +98,8 @@ export default class TestLayout extends React.Component {
             <a href="http://localhost:3000/spotifyPage">
               <span className="text">{"Spotify"}</span>
             </a>
-          </ResizableBox>
+          </Resizable>
           <div className="separator"></div>
-
           <div className="separator"></div>
           <MessageContainer />
         </div>
