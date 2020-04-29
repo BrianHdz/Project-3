@@ -1,0 +1,145 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  color: #252525;
+}
+
+a {
+  text-decoration: none;
+  color: #252525;
+}
+
+.message-container {
+  /* border: 1px solid #dad7d7; */
+  width: 400px;
+  padding: 10px;
+  background-color: white;
+  max-height: 450px;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.nav ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  text-decoration: none;
+}
+
+.nav li:first-child {
+  padding-left: 0;
+}
+
+ul {
+  padding-left: 0;
+}
+
+li {
+  list-style-type: none;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.avatar {
+  height: 50px;
+  border-radius: 25px;
+  margin: 10px;
+}
+
+.message {
+  width: 100%;
+  max-width: 590px;
+  padding: 10px;
+  display: flex;
+  margin: 0 auto;
+  border: 1px solid #dad7d7;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.message-info {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hacky but less typing in the video */
+
+.message-info>div>span:first-child {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.message-info>div>span:nth-child(2) {
+  color: #969696;
+  font-size: 16px;
+}
+
+.message-info>div>div {
+  color: #969696;
+  font-size: 15px;
+}
+
+.message-info>div>p {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.message-icons {
+  display: flex;
+  align-items: center;
+}
+
+.message-icons>span {
+  color: #969696;
+  margin: 0 15px 0 5px;
+  font-size: 18px !important;
+}
+
+.message-icon {
+  font-size: 27px;
+  color: #697784;
+}
+
+.message-icon:hover {
+  color: #00b5d6;
+  cursor: pointer;
+}
+
+.replying-to {
+  border: none;
+  background: transparent;
+  margin: 0;
+  padding: 0;
+  color: #969696;
+  cursor: pointer;
+}
+
+.heart-button {
+  background: transparent;
+  border: none;
+}
+
+.new-message {
+  width: 100%;
+  max-width: 590px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.textarea {
+  border-radius: 4px;
+  border: 1px solid #dad7d7;
+  padding: 10px;
+  font-size: 15px;
+  height: 100px;
+}
+
+.message-length {
+  text-align: right;
+  margin-top: 10px;
+  font-size: 20px;
+  color: #c3392a;
+}
