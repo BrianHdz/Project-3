@@ -1,5 +1,5 @@
 import React, {Component, useEffect, useState} from 'react';
-// import './spotify.css';
+import './spotify.css';
 import SpotifyPlayer from 'react-spotify-web-playback';
 import Spotify from "spotify-web-api-js"
 import Nav from "../components/Nav"
@@ -136,34 +136,39 @@ class SpotifyPage extends Component {
         <Nav/>
       <div className="container">
       <Row>
+
         <Col style={{maxWidth: 200}} size="md-4" className="mt-3 p-3">
-      <a href="https://spotifyapi1.herokuapp.com/"><button type="button" className="btn btn-dark">Log in with Spotify</button></a>
-       </Col>
+          <a href="https://spotifyapi1.herokuapp.com/"><button type="button" className="btn btn-dark">Log in with Spotify</button></a>
+        </Col>
+
+        <Col className="mt-3 p-3" size="md-4">
+          
+          <button type="button" className="btn btn-dark d-block mt-3" onClick={() => this.getFeatured()}>Get Featured PlayLists!</button>
+              <div className="overflow-auto" style={{maxWidth: 400, maxHeight: 450}}>
+                {this.state.featuredPlayLists.length > 1 ? this.state.featuredPlayLists.map(featuredItem => {
+                return <li className="list-group-item">{featuredItem.name}<button type="button" className="btn btn-dark ml-2" onClick={() => this.getId(featuredItem.uri)} key={featuredItem.uri} ><i class="fas fa-play"></i></button><button onClick={() => this.saveFavorites(featuredItem.uri)}  className="btn btn-primary"><i class="fas fa-save"></i></button></li>;
+                }) : ""}
+              </div>
+        </Col>
+
+
+        <Col className="mt-3 p-3" size="md-4">
+          <div className="overflow-auto" style={{maxWidth: 400, maxHeight: 450}}>
+            <h2 className="text-light bg-dark p-2">Search for a Playlist</h2>
+              <input onChange={this.handleInputChange} name="search" value={this.state.search}  className="form-control" type="text" placeholder="Search Playlist"></input>
+                <button onClick={this.handleFormSubmit}  className="btn btn-dark">Click me to Search</button>
+                  { this.state.searchedItems.length > 1 ? this.state.searchedItems.map(searchedItems => {
+                  return <li className="list-group-item">{searchedItems.name}<button type="button" className="btn btn-dark ml-1" onClick={() => this.getId(searchedItems.uri)} key={searchedItems.uri} ><i className="fas fa-play"></i></button><button onClick={() => this.saveFavorites(searchedItems.uri)} className="btn btn-primary"><i class="fas fa-save"></i></button></li>}) : ""}
+          </div>
+        </Col>
       </Row>
       
-        <Row>
-
-          <Col className="mt-3 p-3" size="md-4">
-
-            <button type="button" className="btn btn-dark d-block mt-3" onClick={() => this.getFeatured()}>Get Featured PlayLists!</button>
-            { this.state.featuredPlayLists.length > 1 ? this.state.featuredPlayLists.map(featuredItem => {
-            return <li className="list-group-item">{featuredItem.name}<button type="button" className="btn btn-dark ml-2" onClick={() => this.getId(featuredItem.uri)} key={featuredItem.uri} ><i class="fas fa-play"></i></button><button onClick={() => this.saveFavorites(featuredItem.uri)}  className="btn btn-primary"><i class="fas fa-save"></i></button></li>;
-            }) : ""}
-          </Col>
-
-          <Col style={{maxWidth: 400}} className="mt-3 p-3" size="md-4">
-          <h2 className="text-light bg-dark p-2">Search for a Playlist</h2>
-          <input onChange={this.handleInputChange} name="search" value={this.state.search}  className="form-control" type="text" placeholder="Search Playlist"></input>
-          <button onClick={this.handleFormSubmit}  className="btn btn-dark">Click me to Search</button>
-            { this.state.searchedItems.length > 1 ? this.state.searchedItems.map(searchedItems => {
-            return <li className="list-group-item">{searchedItems.name}<button type="button" className="btn btn-dark ml-1" onClick={() => this.getId(searchedItems.uri)} key={searchedItems.uri} ><i className="fas fa-play"></i></button><button onClick={() => this.saveFavorites(searchedItems.uri)} className="btn btn-primary"><i class="fas fa-save"></i></button></li>}) : ""}
-          </Col>
-
+        {/* <Row>
           <Col className="mt-3 p-3" size="md-4">
           {/* <iframe src={this.state.currentURI_ID} width="300" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe> */}
-          </Col>
+          {/* </Col>
         </Row>
-        <Row>
+        <Row> */}
           {/* <Col className="mt-5 p-5" size="md-4">
             <button type="button" className="btn btn-dark" onClick={() => this.getNowPlaying()}>Check Now Playing</button>
           </Col>
@@ -172,10 +177,11 @@ class SpotifyPage extends Component {
             </div>
             <div><img style={{ width: 100}} src={this.state.nowPlaying.image}></img></div>
           </Col> */}
-        </Row>
-        <Row>
+        {/* </Row > */}
+
+        <Row className="spotifyPlayer">
         {/* <button onClick={this.playPlaylist} className="btn btn-dark">button</button> */}
-        <SpotifyPlayer
+        <SpotifyPlayer 
           token={this.state.token}
           uris={[this.state.currentURI_ID]}
           autoPlay={true}
