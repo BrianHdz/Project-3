@@ -12,12 +12,17 @@ export default {
     return axios.post("/api/users", UserData);
   },
 
-  // Signs a user in from the database
-  signIn: function (UserData) {
-    // Enter code to read from database and 
-    // if E-mail and password match, sign the user in.
-    // See Wk20 Act22 client/src/utils/API.js
+  // Signs a user in from the database. Grabs parameters 
+  // to push to routes/api/users.js
+  signIn: function(query) {
+    axios.get("/api/users/", { params: { query } });
+    console.log(query)
+  },
 
+  // Testing this axios call. It works with controllers/account.js
+  logon: function(query){
+    axios.get("/api/users/", { params: { query } });
+    console.log(query)
   },
 
   createSpotify: function(SpotifyData) {

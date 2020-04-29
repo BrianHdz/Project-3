@@ -1,5 +1,3 @@
-// Need to get the Log In features working. 
-// I think the Sign Up features all work.
 import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -15,20 +13,6 @@ import Typography from '@material-ui/core/Typography';
 import { createMuiTheme, withStyles, makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import { green, purple } from '@material-ui/core/colors';
 import API from "../utils/api";
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-};
-
 
 // ColorButton keeps Sing In button from turning Green
 const ColorButton = withStyles((theme) => ({
@@ -85,6 +69,8 @@ export default function SignInSide() {
   const [userFirstName, setUserFirstName] = useState();
   const [userPassword, setUserPassword] = useState();
   const [userEmail, setUserEmail] = useState();
+  const [loginPassword, setLoginPassword] = useState();
+  const [loginEmail, setLoginEmail] = useState();
 
   const classes = useStyles();
 
@@ -109,6 +95,42 @@ export default function SignInSide() {
       .catch((err) => console.log(err));
   };
 
+  const handleSignIn = (event) => {
+    event.preventDefault();
+
+    var userData = {
+      email: loginEmail,
+      password: loginPassword
+    }
+
+    // console.log(
+    //   "Form Values: ",
+    //   // loginPassword,
+    //   // loginEmail
+    //   userData
+    // );
+
+    API.signIn({
+      email: loginEmail,
+      password: loginPassword
+    })
+    // If there is no email or password input values, return alert.
+    if (!userData.email || !userData.password) {
+      return alert("You must enter both a valid E-mail & Password");
+    } 
+    console.log("Logging in with form values: " + userData.email)
+    // Otherwise we run the loginUser function.
+    loginUser(userData.email, userData.password);
+    // return href="/homePage"
+  };
+
+  function loginUser(email, password) {
+    console.log(email, password)
+  };
+
+
+
+
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -122,7 +144,7 @@ export default function SignInSide() {
           <Typography component="h1" variant="h5">
             Sign in if you have an account.
           </Typography>
-          <form className={classes.form} noValidate onSubmit={handleSubmit}>
+          <form className={classes.form} noValidate onSubmit={handleSignIn}>
             <TextField
               variant="outlined"
               margin="normal"
@@ -133,6 +155,7 @@ export default function SignInSide() {
               name="email"
               autoComplete="email"
               autoFocus
+              onChange={(e) => setLoginEmail(e.target.value)}
             />
             <TextField
               variant="outlined"
@@ -144,6 +167,7 @@ export default function SignInSide() {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={(e) => setLoginPassword(e.target.value)}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -156,7 +180,7 @@ export default function SignInSide() {
               color="primary"
               className={classes.submit}
             >
-              Sign In
+              Log In
             </ColorButton>
             <Grid container>
               <Grid item xs>
@@ -164,15 +188,7 @@ export default function SignInSide() {
                   Forgot password?
                 </Link>
               </Grid>
-              {/* <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid> */}
             </Grid>
-            {/* <Box mt={5}>
-              <Copyright />
-            </Box> */}
           </form>
         </div>
 
@@ -235,31 +251,19 @@ export default function SignInSide() {
                   onChange={(e) => setUserPassword(e.target.value)}
                 />
               </Grid>
-              {/* <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
-              />
-            </Grid> */}
             </Grid>
             <ThemeProvider theme={theme}>
               <Button
-                href="/homePage"
                 type="submit"
                 fullWidth
                 variant="contained"
                 color="primary"
                 className={classes.submit}
+                href="/homePage"
               >Sign Me Up
               </Button>
             </ThemeProvider>
-            <Grid container justify="flex-end">
-              {/* <Grid item>
-              <Link href="#" variant="body2">
-                Already have an account? Sign in
-              </Link>
-            </Grid> */}
-            </Grid>
+            <Grid container justify="flex-end"></Grid>
           </form>
         </div>
 
