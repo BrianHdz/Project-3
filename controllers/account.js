@@ -1,5 +1,6 @@
 const UserProfileModel = require('../models/user-profile.js');
 const crypto = require('crypto');
+const db = require("../models");
 // const uuid = require('node-uuid');
 // const session = session;
 // const mailer = mailer;
@@ -40,6 +41,7 @@ module.exports = {
                 return callback(err, alert("Wrong Username &/or Password"));
             }
             if (user) {
+                console.log(user + "....................from account.js")
                 me.hashPassword(password, user.passwordSalt, function (err, passwordHash) {
                     if (passwordHash == user.passwordHash) {
                         var userProfileModel = new me.UserProfileModel({

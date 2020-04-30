@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,6 +13,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { createMuiTheme, withStyles, makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import { green, purple } from '@material-ui/core/colors';
+import AuthRoute from "../components/LogIn/index.js";
 import API from "../utils/api";
 
 // ColorButton keeps Sing In button from turning Green
@@ -95,6 +97,7 @@ export default function SignInSide() {
       .catch((err) => console.log(err));
   };
 
+  
   const handleSignIn = (event) => {
     event.preventDefault();
 
@@ -103,13 +106,7 @@ export default function SignInSide() {
       password: loginPassword
     }
 
-    // console.log(
-    //   "Form Values: ",
-    //   // loginPassword,
-    //   // loginEmail
-    //   userData
-    // );
-
+    // Use "logon" for account.js or "signIn" for userController.js
     API.signIn({
       email: loginEmail,
       password: loginPassword
@@ -117,11 +114,11 @@ export default function SignInSide() {
     // If there is no email or password input values, return alert.
     if (!userData.email || !userData.password) {
       return alert("You must enter both a valid E-mail & Password");
-    } 
+    }
     console.log("Logging in with form values: " + userData.email)
     // Otherwise we run the loginUser function.
     loginUser(userData.email, userData.password);
-    // return href="/homePage"
+    
   };
 
   function loginUser(email, password) {
@@ -173,15 +170,20 @@ export default function SignInSide() {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
-            <ColorButton
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-            >
-              Log In
+            
+              <ColorButton
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+              >
+                <AuthRoute></AuthRoute>
+                Log In
             </ColorButton>
+            
+            {/* ColorButton */}
+            {/* AuthRoute */}
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
@@ -259,7 +261,7 @@ export default function SignInSide() {
                 variant="contained"
                 color="primary"
                 className={classes.submit}
-                href="/homePage"
+              // href="/homePage"
               >Sign Me Up
               </Button>
             </ThemeProvider>
@@ -271,3 +273,43 @@ export default function SignInSide() {
     </Grid >
   )
 }
+
+
+
+// class ColorButton extends React.Component {
+// handleSignIn = (event) => {
+//   event.preventDefault();
+
+//   var userData = {
+//     email: loginEmail,
+//     password: loginPassword
+//   }
+
+//   // Use "logon" for account.js or "signIn" for userController.js
+//   API.signIn({
+//     email: loginEmail,
+//     password: loginPassword
+//   })
+//   // If there is no email or password input values, return alert.
+//   if (!userData.email || !userData.password) {
+//     return alert("You must enter both a valid E-mail & Password");
+//   }
+//   console.log("Logging in with form values: " + userData.email)
+
+
+//   state = {
+//     toHomePage: false,
+//   }
+//   // Otherwise we run the loginUser function.
+//   handleLoginUser = (user) => {
+//     saveUser(user)
+//       .then(() => this.setState(() => ({
+//         toHomePage: true
+//       })))
+//   },
+//     render() {
+//     if (this.state.toHomePage === true) {
+//       <Redirect to='/homePage' />
+//     }
+//   }
+// }
