@@ -20,7 +20,7 @@ export default {
   },
 
   // Testing this axios call. It works with controllers/account.js
-  logon: function(query){
+  logIn: function(query){
     axios.get("/api/users/", { params: { query } });
     console.log(query)
   },
