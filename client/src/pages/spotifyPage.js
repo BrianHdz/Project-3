@@ -36,9 +36,6 @@ class SpotifyPage extends Component {
     }    
   }
 
-
-
-
   handleInputChange = event => {
     const {name, value} = event.target
 
@@ -108,16 +105,16 @@ class SpotifyPage extends Component {
     })
   }
 
-
   getId(key) {
       this.setState({
         currentURI_ID: key
       })
     }
 
-  saveFavorites(key) {
+  saveFavorites(key,key2) {
       API.createSpotify({
-        uri:key
+        uri:key,
+        name:key2
       }).then(console.log("saved playlist"))
       .catch((err) => console.log(err));
   };
@@ -134,7 +131,7 @@ class SpotifyPage extends Component {
     return (
       <div>
         <Nav/>
-      <div className="container">
+      <div className="container-fluid">
       <Row>
 
         <Col style={{maxWidth: 200}} size="md-4" className="mt-3 p-3">
@@ -146,19 +143,20 @@ class SpotifyPage extends Component {
           <button type="button" className="btn btn-dark d-block mt-3" onClick={() => this.getFeatured()}>Get Featured PlayLists!</button>
               <div className="overflow-auto" style={{maxWidth: 400, maxHeight: 450}}>
                 {this.state.featuredPlayLists.length > 1 ? this.state.featuredPlayLists.map(featuredItem => {
-                return <li className="list-group-item">{featuredItem.name}<button type="button" className="btn btn-dark ml-2" onClick={() => this.getId(featuredItem.uri)} key={featuredItem.uri} ><i class="fas fa-play"></i></button><button onClick={() => this.saveFavorites(featuredItem.uri)}  className="btn btn-primary"><i class="fas fa-save"></i></button></li>;
+                return <li className="list-group-item">{featuredItem.name}<button type="button" className="btn btn-dark ml-2" onClick={() => this.getId(featuredItem.uri)} key={featuredItem.uri} key2={featuredItem.name} ><i class="fas fa-play"></i></button><button onClick={() => this.saveFavorites(featuredItem.uri, featuredItem.name)}  className="btn btn-primary"><i class="fas fa-save"></i></button></li>;
                 }) : ""}
               </div>
         </Col>
 
 
-        <Col className="mt-3 p-3" size="md-4">
-          <div className="overflow-auto" style={{maxWidth: 400, maxHeight: 450}}>
+        <Col style={{maxWidth: 400}} className="mt-3 p-3" size="md-4">
+          
             <h2 className="text-light bg-dark p-2">Search for a Playlist</h2>
               <input onChange={this.handleInputChange} name="search" value={this.state.search}  className="form-control" type="text" placeholder="Search Playlist"></input>
                 <button onClick={this.handleFormSubmit}  className="btn btn-dark">Click me to Search</button>
+                <div className="overflow-auto" style={{maxHeight: 250}}>
                   { this.state.searchedItems.length > 1 ? this.state.searchedItems.map(searchedItems => {
-                  return <li className="list-group-item">{searchedItems.name}<button type="button" className="btn btn-dark ml-1" onClick={() => this.getId(searchedItems.uri)} key={searchedItems.uri} ><i className="fas fa-play"></i></button><button onClick={() => this.saveFavorites(searchedItems.uri)} className="btn btn-primary"><i class="fas fa-save"></i></button></li>}) : ""}
+                  return <li className="list-group-item">{searchedItems.name}<button type="button" className="btn btn-dark ml-1" onClick={() => this.getId(searchedItems.uri)} key={searchedItems.uri} key2={searchedItems.name} ><i className="fas fa-play"></i></button><button onClick={() => this.saveFavorites(searchedItems.uri, searchedItems.name)} className="btn btn-primary"><i class="fas fa-save"></i></button></li>}) : ""}
           </div>
         </Col>
       </Row>
@@ -180,6 +178,7 @@ class SpotifyPage extends Component {
         {/* </Row > */}
 
         <Row className="spotifyPlayer">
+          <Col size="md-12">
         {/* <button onClick={this.playPlaylist} className="btn btn-dark">button</button> */}
         <SpotifyPlayer 
           token={this.state.token}
@@ -188,7 +187,9 @@ class SpotifyPage extends Component {
           showSaveIcon={true}
           play={true}
           />
+          </Col>
         </Row>
+        
         </div>
       </div>
     );

@@ -14,9 +14,6 @@ import Navbar from './components/Navbar/index.js'
 function App() {
   return (
     <div className="App">
-
-
-
       <Router>
         <div>
 

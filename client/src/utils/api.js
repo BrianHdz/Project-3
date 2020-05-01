@@ -22,7 +22,17 @@ export default {
 
   createSpotify: function(SpotifyData) {
     return axios.post("/api/spotify", SpotifyData)
+  },
+
+  getSpotifyFavs: function() {
+    return axios.get("/api/spotify");
+  },
+
+  deleteSpotifyFav: function(id) {
+    return axios.delete("/api/spotify/" + id);
   }
+
+
 };
 
 export function getInitialData() {

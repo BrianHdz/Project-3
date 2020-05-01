@@ -4,6 +4,7 @@ import MessageContainer from "../components/Message/MessageContainer";
 import "./homepageResizable.css";
 import "./homepageGrid.css";
 import "./homepageBoxStyle.css";
+import SpotifyFavorites from "../components/SpotifyFavorites"
 
 const Resizable = require("react-resizable").ResizableBox;
 const ResizableBox = require("react-resizable").ResizableBox;
@@ -102,6 +103,10 @@ export default class TestLayout extends React.Component<
           <div className="separator"></div>
           <div className="separator"></div>
           <MessageContainer />
+          <div className="separator"></div>
+          <div className="separator"></div>
+          <SpotifyFavorites />
+          
         </div>
       </div>
     );
