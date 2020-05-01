@@ -11,8 +11,8 @@ const AuthRoute = props => {
   return <Route {...isAuthUser} />;
 };
 
-const mapStateToProps = ({ isAuthUser }) => ({
-  isAuthUser
+const mapStateToProps = ({ ...props }) => ({
+    
 });
 
 export default connect(mapStateToProps)(AuthRoute);

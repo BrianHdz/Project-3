@@ -18,7 +18,8 @@ module.exports = {
         this.crypto.pbkdf2(password, salt, iterations, keyLen, callback);
     },
 
-
+    // req requesting/getting data from the front end axios call.
+    // res sends/posts data from the back end to the front end with the axios call.
     findOne: function (req, res) {
         let credentials = JSON.parse(req.query.query)
         let email = credentials.email
@@ -40,13 +41,15 @@ module.exports = {
                     // Validating Password and console.log status on the backend
                     if (user.password === password) {
                         // Push user to homepage when they login
-                        //this.user.push("/homePage"); 
-                        console.log("login successful")
+                        //this.user.push("/homePage");
+
+                       res.send("Log in successfull")
+                        // (console.log("login successful"))
                     } else {
-                        console.log("Incorrect password")
+                        res.send("Incorrect password")
                     }
                 } else {
-                    console.log("User does not exist")
+                    res.send("User does not exist")
                 }
             }
 
