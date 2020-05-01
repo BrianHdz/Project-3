@@ -94,10 +94,11 @@ export default function SignInSide() {
       email: userEmail,
     })
       .then(console.log("saved user"))
+      .then(window.location.replace("/homePage"))
       .catch((err) => console.log(err));
   };
 
-  
+
   const handleSignIn = (event) => {
     event.preventDefault();
 
@@ -110,7 +111,14 @@ export default function SignInSide() {
     API.signIn({
       email: loginEmail,
       password: loginPassword
-    })
+    }).then(function (res){
+    console.log(res.data)
+    if (res.data === "Log in successfull"){
+      window.location.replace("/homePage")
+      // "/homePage"
+    }
+    
+  })
     // If there is no email or password input values, return alert.
     if (!userData.email || !userData.password) {
       return alert("You must enter both a valid E-mail & Password");
@@ -118,7 +126,7 @@ export default function SignInSide() {
     console.log("Logging in with form values: " + userData.email)
     // Otherwise we run the loginUser function.
     loginUser(userData.email, userData.password);
-    
+
   };
 
   function loginUser(email, password) {
@@ -126,10 +134,8 @@ export default function SignInSide() {
   };
 
 
-
-
   return (
-    <Grid container component="main" className={classes.root}>
+    <Grid container component="main" className={classes.root} >
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
@@ -170,18 +176,18 @@ export default function SignInSide() {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
-            
-              <ColorButton
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-              >
-                <AuthRoute></AuthRoute>
+
+            <ColorButton
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
+              <AuthRoute></AuthRoute>
                 Log In
             </ColorButton>
-            
+
             {/* ColorButton */}
             {/* AuthRoute */}
             <Grid container>
@@ -276,40 +282,44 @@ export default function SignInSide() {
 
 
 
+
+
+
+
 // class ColorButton extends React.Component {
-// handleSignIn = (event) => {
-//   event.preventDefault();
+//   handleSignIn = (event) => {
+//     event.preventDefault();
 
-//   var userData = {
-//     email: loginEmail,
-//     password: loginPassword
-//   }
+//     var userData = {
+//       email: loginEmail,
+//       password: loginPassword
+//     }
 
-//   // Use "logon" for account.js or "signIn" for userController.js
-//   API.signIn({
-//     email: loginEmail,
-//     password: loginPassword
-//   })
-//   // If there is no email or password input values, return alert.
-//   if (!userData.email || !userData.password) {
-//     return alert("You must enter both a valid E-mail & Password");
-//   }
-//   console.log("Logging in with form values: " + userData.email)
+//     // Use "logon" for account.js or "signIn" for userController.js
+//     API.signIn({
+//       email: loginEmail,
+//       password: loginPassword
+//     })
+//     // If there is no email or password input values, return alert.
+//     if (!userData.email || !userData.password) {
+//       return alert("You must enter both a valid E-mail & Password");
+//     }
+//     console.log("Logging in with form values: " + userData.email)
 
 
-//   state = {
-//     toHomePage: false,
-//   }
-//   // Otherwise we run the loginUser function.
-//   handleLoginUser = (user) => {
-//     saveUser(user)
-//       .then(() => this.setState(() => ({
-//         toHomePage: true
-//       })))
-//   },
-//     render() {
-//     if (this.state.toHomePage === true) {
-//       <Redirect to='/homePage' />
+//     state = {
+//       toHomePage: false,
+//     }
+//     // Otherwise we run the loginUser function.
+//     handleLoginUser = (user) => {
+//       saveUser(user)
+//         .then(() => this.setState(() => ({
+//           toHomePage: true
+//         })))
+//     },
+//       render() {
+//       if (this.state.toHomePage === true) {
+//         <Redirect to='/homePage' />
+//       }
 //     }
 //   }
-// }
