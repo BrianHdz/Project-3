@@ -4,7 +4,7 @@ import {
   _getMessages,
   _saveLikeToggle,
   _saveMessage,
-} from './_DATA.js'
+} from "./_DATA.js";
 
 export default {
   // Saves a User to the database
@@ -12,12 +12,11 @@ export default {
     return axios.post("/api/users", UserData);
   },
 
-  // Signs a user in from the database. Grabs parameters 
+  // Signs a user in from the database. Grabs parameters
   // to push to routes/api/users.js
-  signIn: function(query) {
-    return axios.get("/api/users/", { params: { query } })
-     
-    
+  signIn: function (query) {
+    return axios.get("/api/users/", { params: { query } });
+
     // console.log(query)
   },
 
@@ -27,35 +26,36 @@ export default {
   //   console.log(query)
   // },
 
-  createSpotify: function(SpotifyData) {
-    return axios.post("/api/spotify", SpotifyData)
+  createSpotify: function (SpotifyData) {
+    return axios.post("/api/spotify", SpotifyData);
   },
 
-  getSpotifyFavs: function() {
+  getSpotifyFavs: function () {
     return axios.get("/api/spotify");
   },
 
-  deleteSpotifyFav: function(id) {
+  deleteSpotifyFav: function (id) {
     return axios.delete("/api/spotify/" + id);
-  }
+  },
 
-
+  saveVideo: function (YoutubeData) {
+    return axios.post("/api/youtube", YoutubeData);
+  },
 };
 
 export function getInitialData() {
-  return Promise.all([
-    _getUsers(),
-    _getMessages(),
-  ]).then(([users, messages]) => ({
-    users,
-    messages,
-  }))
+  return Promise.all([_getUsers(), _getMessages()]).then(
+    ([users, messages]) => ({
+      users,
+      messages,
+    })
+  );
 }
 
 export function saveLikeToggle(info) {
-  return _saveLikeToggle(info)
+  return _saveLikeToggle(info);
 }
 
 export function saveMessage(info) {
-  return _saveMessage(info)
+  return _saveMessage(info);
 }
