@@ -3,6 +3,14 @@
 } */
 
 .spotifyPlayer {
+    width: 1200px;
     position: sticky;
     bottom: 10px;
+}
+
+@media (max-width: 760px) {
+    .spotifyPlayer {
+        width: max-content;
+    }
+    
 }
