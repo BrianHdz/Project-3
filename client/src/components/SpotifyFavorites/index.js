@@ -7,7 +7,8 @@ import DeleteBtn from "../DeleteBtn"
 
 
 function SpotifyFavorites() {
-    const [spotifyFavs, setSpotifyFavs] = useState([])
+    const [spotifyFavs, setSpotifyFavs] = useState([]);
+   
 
 useEffect(() => {
    loadSpotifyFavs()
@@ -26,9 +27,13 @@ function deleteSpotifyFav(id) {
         .catch(err => console.log(err));
 }
 
+function setSpotifyPlayerURI(key) {
+
+}
 
 return (
     <div className="container">
+        <Row>
         {spotifyFavs.length ? (
             <List>
                 {spotifyFavs.map(spotifyFav => {
@@ -37,7 +42,7 @@ return (
                             <strong>
                                 {spotifyFav.name}
                             </strong>
-                            <button key={spotifyFav.uri}>Play me</button>
+                            <button onClick={() => setSpotifyPlayerURI(spotifyFav.uri)} key={spotifyFav.uri}>Play me</button>
                             <DeleteBtn onClick={() => deleteSpotifyFav(spotifyFav._id)} />
                         </ListItem>
                     )
@@ -46,6 +51,7 @@ return (
         ) : (
             <h3 className="text-light bg-dark">Save some Favs on the Spotify Page!</h3>
         )}
+        </Row>
     </div>
 )
 

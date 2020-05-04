@@ -44,7 +44,9 @@ export default class TestLayout extends React.Component<
   {},
   { width: number, height: number }
 > {
-  state = { width: 200, height: 200 };
+  state = { 
+    width: 200, 
+    height: 200};
 
   //onClick = () => {
   //  this.setState({width: 200, height: 200});
@@ -53,6 +55,7 @@ export default class TestLayout extends React.Component<
   onResize = (event, { element, size, handle }) => {
     this.setState({ width: size.width, height: size.height });
   };
+
 
   render() {
     return (
@@ -105,8 +108,7 @@ export default class TestLayout extends React.Component<
           <MessageContainer />
           <div className="separator"></div>
           <div className="separator"></div>
-          <SpotifyFavorites />
-          
+
         </div>
       </div>
     );
