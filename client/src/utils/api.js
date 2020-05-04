@@ -41,6 +41,14 @@ export default {
   saveVideo: function (YoutubeData) {
     return axios.post("/api/youtube", YoutubeData);
   },
+
+  getYoutubeFavs: function () {
+    return axios.get("/api/youtube");
+  },
+
+  deleteYoutubeFav: function (id) {
+    return axios.delete("/api/youtube/" + id);
+  },
 };
 
 export function getInitialData() {

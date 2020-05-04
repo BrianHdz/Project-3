@@ -34,7 +34,6 @@ class Message extends Component {
   };
 
   render() {
-    console.log(this.props);
     const { message } = this.props;
 
     if (message === null) {
