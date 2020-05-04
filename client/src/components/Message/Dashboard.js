@@ -5,7 +5,6 @@ import Message from "./Message";
 
 class Dashboard extends Component {
   render() {
-    console.log(this.props);
     return (
       <div>
         <hr />
