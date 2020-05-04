@@ -5,10 +5,10 @@ a {
 
 .message-container {
   /* border: 1px solid #dad7d7; */
-  width: 500px;
+  width: 450px;
   padding: 10px;
   background-color: white;
-  max-height: 550px;
+  max-height: 590px;
   overflow: scroll;
   overflow-x: hidden;
 }

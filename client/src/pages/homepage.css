@@ -1,0 +1,19 @@
+.spotifyFavs-container {
+    width: 700px;
+    max-height: 235px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.videoFavs-container {
+    width: 700px;
+    max-height: 280px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.content-header {
+    background-color: rgb(255, 255, 255, 0.5);
+    border-radius: 4px;
+    max-width: 89%;
+}
