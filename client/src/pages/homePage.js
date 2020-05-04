@@ -11,7 +11,7 @@ function HomePage() {
       <Nav />
       <div className="container mt-1">
         <div className="row">
-          <div className="col-md-8">
+          <div className="col-md-7">
             <h3 className="content-header text-center">My Spotify Favorites</h3>
             <div className="row spotifyFavs-container">
               <SpotifyFavorites />
@@ -21,7 +21,7 @@ function HomePage() {
               <FavVideo />
             </div>
           </div>
-          <div className="col-md-4">
+          <div className="col-md-5">
             <MessageContainer />
           </div>
         </div>
