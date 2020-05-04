@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { handleAddMessage } from "../../actions/messages";
 
-import { Redirect } from "react-router-dom";
-
 class NewMessage extends Component {
   state = {
     text: "",
@@ -36,7 +34,7 @@ class NewMessage extends Component {
   };
 
   render() {
-    const { text, toHome } = this.state;
+    const { text } = this.state;
     const messageLeft = 280 - text.length;
 
     return (
