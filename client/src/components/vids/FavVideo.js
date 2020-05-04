@@ -22,30 +22,38 @@ const FavVideo = () => {
 
   return (
     <div className="container">
-      {youtubeFavs.map((youtubeFav) => {
-        return (
-          <div key={youtubeFav._id}>
-            <div className="card mb-2 shadow-sm">
-              <Iframe
-                width="650"
-                height="240"
-                src={`http://www.youtube.com/embed/${youtubeFav.favorites} `}
-                frameBorder="0"
-                allowFullScreen
-              />
+      {youtubeFavs.length ? (
+        <React.Fragment>
+          {youtubeFavs.map((youtubeFav) => {
+            return (
+              <div key={youtubeFav._id}>
+                <div className="card mb-2 shadow-sm">
+                  <Iframe
+                    width="650"
+                    height="240"
+                    src={`http://www.youtube.com/embed/${youtubeFav.favorites} `}
+                    frameBorder="0"
+                    allowFullScreen
+                  />
 
-              <button
-                name={`${youtubeFav._id}`}
-                className={`btn btn-dark btn-block`}
-                data-value={`${youtubeFav._id}`}
-                onClick={() => deleteYoutubeFav(youtubeFav._id)}
-              >
-                Delete Video From Favorites
-              </button>
-            </div>
-          </div>
-        );
-      })}
+                  <button
+                    name={`${youtubeFav._id}`}
+                    className={`btn btn-dark btn-block`}
+                    data-value={`${youtubeFav._id}`}
+                    onClick={() => deleteYoutubeFav(youtubeFav._id)}
+                  >
+                    Delete Video From Favorites
+                  </button>
+                </div>
+              </div>
+            );
+          })}
+        </React.Fragment>
+      ) : (
+        <h3 className="text-light bg-dark text-center">
+          Save some Favs on the YouTube Page!
+        </h3>
+      )}
     </div>
   );
 };

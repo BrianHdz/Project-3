@@ -39,7 +39,7 @@ function SpotifyFavorites() {
           })}
         </List>
       ) : (
-        <h3 className="text-light bg-dark">
+        <h3 className="text-light bg-dark text-center">
           Save some Favs on the Spotify Page!
         </h3>
       )}
