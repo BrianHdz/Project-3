@@ -29,7 +29,6 @@ const FavVideo = () => {
               <div key={youtubeFav._id}>
                 <div className="card mb-2 shadow-sm">
                   <Iframe
-                    width="650"
                     height="240"
                     src={`http://www.youtube.com/embed/${youtubeFav.favorites} `}
                     frameBorder="0"
