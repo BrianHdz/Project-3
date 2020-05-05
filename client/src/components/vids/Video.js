@@ -18,7 +18,7 @@ const Video = (props) => {
     <div className="col-md-6">
       <div className="card mb-4 shadow-sm">
         <Iframe
-          width="550"
+          width="540"
           height="315"
           src={`http://www.youtube.com/embed/${video.videoId} `}
           frameBorder="0"
