@@ -8,8 +8,19 @@ import Col from "../components/Col"
 import Visualizer from '../components/Visualizer';
 import API from "../utils/api";
 
-const spotifyWebAPI = new Spotify();
+export const authEndpoint = 'https://accounts.spotify.com/authorize';
+// Replace with your app's client ID, redirect URI and desired scopes
+const clientId = "3e0ec02d26d940389d29340b4da5bd88";
 
+const redirectUri = "http://localhost:3000/spotifyPage";
+const scopes = [
+  "user-top-read",
+  "user-read-currently-playing",
+  "user-read-playback-state",
+];
+
+
+const spotifyWebAPI = new Spotify();
 
 class SpotifyPage extends Component {
   
@@ -132,12 +143,20 @@ class SpotifyPage extends Component {
     return (
       <div>
         <Nav/>
+        <a
+          className="btn btn--loginApp-link"
+          href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
+            "%20"
+          )}&response_type=token&show_dialog=true`}
+        >
+          Login to Spotify
+        </a>
       <div className="container-fluid">
       <Row>
 
-        <Col style={{maxWidth: 200}} size="md-4" className="mt-3 p-3">
+        {/* <Col style={{maxWidth: 200}} size="md-4" className="mt-3 p-3">
           <a href="https://spotifyapi1.herokuapp.com/"><button type="button" className="btn btn-dark">Log in with Spotify</button></a>
-        </Col>
+        </Col> */}
 
         <Col className="mt-3 p-3" size="md-4">
           
