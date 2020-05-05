@@ -1,31 +1,60 @@
-import React, {useState} from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import SignUp from "./pages/signup";
 import "./app.css"
 import HomePage from "./pages/homePage";
 import SpotifyPage from "./pages/spotifyPage";
 import YoutubePage from "./pages/youtubePage.js";
-import ReactMediaVisualizer from './components/Visualizer'
-import Main from './components/Main/index.js'
-import Navbar from './components/Navbar/index.js'
-import SpotifyPlayer from 'react-spotify-web-playback';
+import hash from "./hash"
 
+// export const authEndpoint = 'https://accounts.spotify.com/authorize';
+// // Replace with your app's client ID, redirect URI and desired scopes
+// const clientId = "3e0ec02d26d940389d29340b4da5bd88";
 
-
+// const redirectUri = "http://localhost:3000/homePage";
+// const scopes = [
+//   "user-top-read",
+//   "user-read-currently-playing",
+//   "user-read-playback-state",
+// ];
+// Get the hash of the url
 
 function App() {
 
-  
-  const [currentURI, setCurrentURI] = useState("spotify:playlist:37i9dQZF1DWSNC7AjZWNry")
   const [token, setToken] = useState("")
+  const [redirectUri, setRedirectUri] = useState("http://localhost:3000/homePage")
+  const [authEndpoint, setAuth] = useState("https://accounts.spotify.com/authorize")
+  const [clientId, setClientId] = useState("3e0ec02d26d940389d29340b4da5bd88")
+  const [scopes, setScopes] = useState(
+    [
+    "user-top-read",
+    "user-read-currently-playing",
+    "user-read-playback-state",
+  ])
+  
+  useEffect(() => {
+    let _token = hash.access_token;
+    if (_token) {
+      // Set token
+      setToken(_token)
+    }
 
+
+  }, [])
 
   return (
     <div className="App">
+
+        
+
+                    
       <Router>
+  
         <div>
 
           <Switch>
+
+
 
             <Route exact path={["/", "/signup"]}>
               <SignUp />
@@ -33,18 +62,18 @@ function App() {
 
             <Route exact path={"/homePage"}>
               <HomePage
-                token={token}
-                setCurrentURI={setCurrentURI}
-                setToken={setToken}
-                currentURI={currentURI} />
+              authEndpoint={authEndpoint}
+              clientId={clientId}
+              scopes={scopes}
+              redirectUri={redirectUri}
+              />
             </Route>
 
 
             <Route exact path={"/spotifyPage"}>
               <SpotifyPage 
-              setCurrentURI={setCurrentURI}
-              setToken={setToken}
-              currentURI={currentURI} />
+                token1={token}
+              />
             </Route>
 
 
@@ -53,16 +82,11 @@ function App() {
             </Route>
 
           </Switch>
+
         </div>
+                  
       </Router>
-{/* 
-      <SpotifyPlayer 
-          token={token}
-          uris={[currentURI]}
-          autoPlay={true}
-          showSaveIcon={true}
-          play={true}
-          /> */}
+
 
     </div>
   );
