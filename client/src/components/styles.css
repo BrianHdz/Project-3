@@ -32,13 +32,13 @@ main {
   color: white;
 }
 
-nav {
+/* nav {
   height: 50px;
   width: 100%;
   box-shadow: 0 0 1px 1px rgba(0, 0, 0, .1);
   color: white;
   display: flex;
-}
+} */
 
 nav div {
   font-size: 22px;

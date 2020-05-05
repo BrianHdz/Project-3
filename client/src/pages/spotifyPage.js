@@ -189,7 +189,7 @@ class SpotifyPage extends Component {
           showSaveIcon={true}
           play={true}
           /> */}
-      <iframe  src={`https://open.spotify.com/embed/playlist/${this.state.currentURI_ID}`} width="300" height="400" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+      <iframe  src={`https://open.spotify.com/embed/playlist/${this.state.currentURI_ID}`} width="200" height="300" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
           </Col>
 
       </Row>
