@@ -6,7 +6,9 @@ import { List, ListItem } from "../List";
 import DeleteBtn from "../DeleteBtn";
 
 function SpotifyFavorites() {
+
   const [spotifyFavs, setSpotifyFavs] = useState([]);
+
 
   useEffect(() => {
     loadSpotifyFavs();
@@ -23,6 +25,11 @@ function SpotifyFavorites() {
       .then((res) => loadSpotifyFavs())
       .catch((err) => console.log(err));
   }
+
+
+function setSpotifyPlayerURI(key) {
+
+}
 
   return (
     <div className="container">
@@ -43,6 +50,7 @@ function SpotifyFavorites() {
           Save some Favs on the Spotify Page!
         </h3>
       )}
+
     </div>
   );
 }
