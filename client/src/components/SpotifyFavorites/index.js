@@ -39,7 +39,7 @@ function setSpotifyPlayerURI(key) {
             return (
               <ListItem key={spotifyFav._id}>
                 <strong>{spotifyFav.name}</strong>
-                <button key={spotifyFav.uri}>Play me</button>
+                <iframe src={`https://open.spotify.com/embed/playlist/${spotifyFav.uri}`} width="600" height="200" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
                 <DeleteBtn onClick={() => deleteSpotifyFav(spotifyFav._id)} />
               </ListItem>
             );
