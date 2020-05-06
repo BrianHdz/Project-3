@@ -6,9 +6,7 @@ import { List, ListItem } from "../List";
 import DeleteBtn from "../DeleteBtn";
 
 function SpotifyFavorites() {
-
   const [spotifyFavs, setSpotifyFavs] = useState([]);
-
 
   useEffect(() => {
     loadSpotifyFavs();
@@ -26,10 +24,7 @@ function SpotifyFavorites() {
       .catch((err) => console.log(err));
   }
 
-
-function setSpotifyPlayerURI(key) {
-
-}
+  function setSpotifyPlayerURI(key) {}
 
   return (
     <div className="container">
@@ -39,7 +34,14 @@ function setSpotifyPlayerURI(key) {
             return (
               <ListItem key={spotifyFav._id}>
                 {/* <strong>{spotifyFav.name}</strong> */}
-                <iframe src={`https://open.spotify.com/embed/playlist/${spotifyFav.uri}`} width="305" height="200" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                <iframe
+                  src={`https://open.spotify.com/embed/playlist/${spotifyFav.uri}`}
+                  width="305"
+                  height="200"
+                  frameborder="0"
+                  allowtransparency="true"
+                  allow="encrypted-media"
+                ></iframe>
                 <DeleteBtn onClick={() => deleteSpotifyFav(spotifyFav._id)} />
               </ListItem>
             );
@@ -50,7 +52,6 @@ function setSpotifyPlayerURI(key) {
           Save some Favs on the Spotify Page!
         </h3>
       )}
-
     </div>
   );
 }
