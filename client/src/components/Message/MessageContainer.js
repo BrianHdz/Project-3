@@ -17,13 +17,15 @@ class MessageContainer extends Component {
     return (
       <Fragment>
         <LoadingBar />
-        <div className="message-container">
-          <MessageNav />
-          {this.props.loading === true ? null : (
-            <div>
-              <Dashboard />
-            </div>
-          )}
+        <div className="message-parent">
+          <div className="message-child">
+            <MessageNav />
+            {this.props.loading === true ? null : (
+              <div>
+                <Dashboard />
+              </div>
+            )}
+          </div>
         </div>
       </Fragment>
     );
