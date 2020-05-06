@@ -4,9 +4,9 @@ import MessageContainer from "../components/Message/MessageContainer";
 import SpotifyFavorites from "../components/SpotifyFavorites";
 import FavVideo from "../components/vids/FavVideo";
 import "./homepage.css";
-import JumboNav from "../components/jumboNav"
+import JumboNav from "../components/jumboNav";
 
-export const authEndpoint = 'https://accounts.spotify.com/authorize';
+export const authEndpoint = "https://accounts.spotify.com/authorize";
 // Replace with your app's client ID, redirect URI and desired scopes
 const clientId = "3e0ec02d26d940389d29340b4da5bd88";
 
@@ -17,24 +17,22 @@ const scopes = [
   "user-read-playback-state",
 ];
 
-
 function HomePage() {
-
   return (
     <React.Fragment>
       {/* <Nav /> */}
-      <JumboNav/>
-      <a
-          className="btn btn--loginApp-link"
-          href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
-            "%20"
-          )}&response_type=token&show_dialog=true`}
-        >
-          <h2 className="text-center content-header">Log into Spotify</h2>
-        </a>
-      <div className="container mt-1">
+      <JumboNav />
+      <div className="container home-container">
         <div className="row">
-          <div className="col-md-8">
+          <a
+            className="btn btn--loginApp-link col-md-2"
+            href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
+              "%20"
+            )}&response_type=token&show_dialog=true`}
+          >
+            <h2 className="text-center content-header">Log into Spotify</h2>
+          </a>
+          <div className="col-md-5">
             <h3 className="content-header text-center">My Spotify Favorites</h3>
             <div className="row spotifyFavs-container">
               <SpotifyFavorites />
@@ -44,7 +42,7 @@ function HomePage() {
               <FavVideo />
             </div>
           </div>
-          <div className="col-md-4">
+          <div className="col-md-5">
             <MessageContainer />
           </div>
         </div>
