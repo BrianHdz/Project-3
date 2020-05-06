@@ -146,7 +146,7 @@ class SpotifyPage extends Component {
         <div>
         <JumboNav/>
         </div>
-        <Row>
+        <Row className="text-center">
         <a
           className=" ml-5 p-2"
           href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(

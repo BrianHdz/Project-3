@@ -153,8 +153,8 @@ export default class JumboNav extends React.Component {
         <main className="page">
           <div className="wrap">
             <div className="title-section text-wrapper">
-              <h1 className="jumbotron bg-dark">Societé</h1>
-              <span className=" p-2 author text-light bg-dark">Your go to spot for all your media wants</span>
+              <h1  className=" fancy jumbotron bg-dark">Societé</h1>
+              <span className="p-2 author ">Your go to spot for all your media wants</span>
             </div>
           </div>
        
