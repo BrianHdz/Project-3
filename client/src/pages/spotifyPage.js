@@ -7,7 +7,7 @@ import Row from "../components/Row"
 import Col from "../components/Col"
 import Visualizer from '../components/Visualizer';
 import API from "../utils/api";
-
+import JumboNav from "../components/jumboNav/index"
 export const authEndpoint = 'https://accounts.spotify.com/authorize';
 // Replace with your app's client ID, redirect URI and desired scopes
 const clientId = "3e0ec02d26d940389d29340b4da5bd88";
@@ -142,26 +142,31 @@ class SpotifyPage extends Component {
   render() {
     return (
       <div>
-        <Nav/>
+        {/* <Nav/> */}
+        <div>
+        <JumboNav/>
+        </div>
+        <Row className="text-center">
         <a
-          className="btn btn--loginApp-link"
+          className=" ml-5 p-2"
           href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
             "%20"
           )}&response_type=token&show_dialog=true`}
         >
-          Login to Spotify
+           <h2 className="text-center"><i class="fab fa-spotify"></i></h2>
         </a>
-      <div className="container-fluid">
+        </Row>
+      <div className="container">
       <Row>
 
         {/* <Col style={{maxWidth: 200}} size="md-4" className="mt-3 p-3">
           <a href="https://spotifyapi1.herokuapp.com/"><button type="button" className="btn btn-dark">Log in with Spotify</button></a>
         </Col> */}
 
-        <Col className="mt-3 p-3" size="md-4">
+        <Col className="mt-2 p-2" size="md-4">
           
-          <button type="button" className="btn btn-dark d-block mt-3" onClick={() => this.getFeatured()}>Get Featured PlayLists!</button>
-              <div className="overflow-auto" style={{maxWidth: 400, maxHeight: 450}}>
+          <button type="button" className="btn3 btn-three d-block mt-3" onClick={() => this.getFeatured()}>Click me for featured playlists!</button>
+              <div className="overflow-auto" style={{maxWidth: 375, maxHeight: 450}}>
                 {this.state.featuredPlayLists.length > 1 ? this.state.featuredPlayLists.map(featuredItem => {
                 return <li className="list-group-item">{featuredItem.name}<button type="button" className="btn btn-dark ml-2" onClick={() => this.getId(featuredItem.id)} key={featuredItem.id} key2={featuredItem.name} ><i class="fas fa-play"></i></button><button onClick={() => this.saveFavorites(featuredItem.id, featuredItem.name)}  className="btn btn-primary"><i class="fas fa-save"></i></button></li>;
                 }) : ""}
@@ -169,18 +174,18 @@ class SpotifyPage extends Component {
         </Col>
 
 
-        <Col style={{maxWidth: 400}} className="mt-3 p-3" size="md-4">
+        <Col style={{maxWidth: 400}} className="mt-2 p-2" size="md-4">
           
-            <h2 className="text-light bg-dark p-2">Search for a Playlist</h2>
+            <h2 className="search text-light text-center p-2">Search for a Playlist</h2>
               <input onChange={this.handleInputChange} name="search" value={this.state.search}  className="form-control" type="text" placeholder="Search Playlist"></input>
-                <button onClick={this.handleFormSubmit}  className="btn btn-dark">Click me to Search</button>
+                <button onClick={this.handleFormSubmit}  className="btn3 btn-three">Click me to Search</button>
                 <div className="overflow-auto" style={{maxHeight: 250}}>
                   { this.state.searchedItems.length > 1 ? this.state.searchedItems.map(searchedItems => {
                   return <li className="list-group-item">{searchedItems.name}<button type="button" className="btn btn-dark ml-1" onClick={() => this.getId(searchedItems.id)} key={searchedItems.id} key2={searchedItems.name} ><i className="fas fa-play"></i></button><button onClick={() => this.saveFavorites(searchedItems.id, searchedItems.name)} className="btn btn-primary"><i class="fas fa-save"></i></button></li>}) : ""}
           </div>
         </Col>
 
-        <Col className="mt-3 p-3" size="md-3">
+        <Col className="mt-2 p-2" size="md-4">
         {/* <button onClick={this.playPlaylist} className="btn btn-dark">button</button> */}
         {/* <SpotifyPlayer 
           token={this.props.token1}
@@ -189,7 +194,7 @@ class SpotifyPage extends Component {
           showSaveIcon={true}
           play={true}
           /> */}
-      <iframe  src={`https://open.spotify.com/embed/playlist/${this.state.currentURI_ID}`} width="200" height="300" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+      <iframe  src={`https://open.spotify.com/embed/playlist/${this.state.currentURI_ID}`} width="400" height="300" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
           </Col>
 
       </Row>

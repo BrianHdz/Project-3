@@ -38,8 +38,8 @@ function setSpotifyPlayerURI(key) {
           {spotifyFavs.map((spotifyFav) => {
             return (
               <ListItem key={spotifyFav._id}>
-                <strong>{spotifyFav.name}</strong>
-                <iframe src={`https://open.spotify.com/embed/playlist/${spotifyFav.uri}`} width="600" height="200" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                {/* <strong>{spotifyFav.name}</strong> */}
+                <iframe src={`https://open.spotify.com/embed/playlist/${spotifyFav.uri}`} width="305" height="200" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
                 <DeleteBtn onClick={() => deleteSpotifyFav(spotifyFav._id)} />
               </ListItem>
             );

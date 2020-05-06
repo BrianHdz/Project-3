@@ -6,7 +6,8 @@ import HomePage from "./pages/homePage";
 import SpotifyPage from "./pages/spotifyPage";
 import YoutubePage from "./pages/youtubePage.js";
 import hash from "./hash"
-
+// import Jumbo from "./components/Jumbo/headnav"
+// import JumboNav from "./components/jumboNav/index"
 // export const authEndpoint = 'https://accounts.spotify.com/authorize';
 // // Replace with your app's client ID, redirect URI and desired scopes
 // const clientId = "3e0ec02d26d940389d29340b4da5bd88";
@@ -80,6 +81,15 @@ function App() {
             <Route exact path={"/youtubePage"}>
               <YoutubePage />
             </Route>
+
+            {/* <Route exact path={"/headnav"}>
+              <Jumbo/>
+            </Route> */}
+{/* 
+            <Route exact path={"/head2"}>
+              <JumboNav/>
+            </Route> */}
+
 
           </Switch>
 

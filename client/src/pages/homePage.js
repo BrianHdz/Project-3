@@ -4,6 +4,7 @@ import MessageContainer from "../components/Message/MessageContainer";
 import SpotifyFavorites from "../components/SpotifyFavorites";
 import FavVideo from "../components/vids/FavVideo";
 import "./homepage.css";
+import JumboNav from "../components/jumboNav"
 
 export const authEndpoint = 'https://accounts.spotify.com/authorize';
 // Replace with your app's client ID, redirect URI and desired scopes
@@ -21,14 +22,15 @@ function HomePage() {
 
   return (
     <React.Fragment>
-      <Nav />
+      {/* <Nav /> */}
+      <JumboNav/>
       <a
           className="btn btn--loginApp-link"
           href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
             "%20"
           )}&response_type=token&show_dialog=true`}
         >
-          Login to Spotify
+          <h2 className="text-center content-header">Log into Spotify</h2>
         </a>
       <div className="container mt-1">
         <div className="row">
