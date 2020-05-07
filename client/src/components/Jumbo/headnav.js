@@ -73,7 +73,7 @@ export default function Jumbo() {
 <div className="title">
   <div><span className="typcn typcn-heart-outline icon heading"></span></div>
   <div className="smallsep heading"></div>
-  <h1 className="heading"> Societe</h1>
+  <h1 className="heading"> Societé</h1>
   <h2 className="heading">Your go-to spot for all your needs</h2>
   <a className="smoothscroll" href="#about">
   <div className="mouse">
