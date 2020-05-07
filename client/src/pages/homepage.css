@@ -1,17 +1,29 @@
 .spotifyFavs-container {
     max-height: 235px;
-    overflow: scroll;
-    overflow-x: hidden;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+}
+
+.spotifyFavs-container::-webkit-scrollbar {
+    display: none;
 }
 
 .videoFavs-container {
     max-height: 280px;
-    overflow: scroll;
-    overflow-x: hidden;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+}
+
+.videoFavs-container::-webkit-scrollbar {
+    display: none;
 }
 
 .content-header {
     background-color: rgb(255, 255, 255, 0.5);
     border-radius: 4px;
     max-width: 89%;
+}
+
+.home-container {
+    margin-bottom: 4em;
 }

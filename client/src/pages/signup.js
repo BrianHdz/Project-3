@@ -1,18 +1,22 @@
-import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { createMuiTheme, withStyles, makeStyles, ThemeProvider } from '@material-ui/core/styles';
-import { green, purple } from '@material-ui/core/colors';
+import React, { useState } from "react";
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import Link from "@material-ui/core/Link";
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Typography from "@material-ui/core/Typography";
+import {
+  createMuiTheme,
+  withStyles,
+  makeStyles,
+  ThemeProvider,
+} from "@material-ui/core/styles";
+import { green, purple } from "@material-ui/core/colors";
 import AuthRoute from "../components/LogIn/index.js";
 import API from "../utils/api";
 
@@ -21,7 +25,7 @@ const ColorButton = withStyles((theme) => ({
   root: {
     color: theme.palette.getContrastText(purple[500]),
     backgroundColor: purple[500],
-    '&:hover': {
+    "&:hover": {
       backgroundColor: purple[700],
     },
   },
@@ -34,31 +38,32 @@ const theme = createMuiTheme({
   },
 });
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: '100vh',
+    height: "100vh",
   },
   image: {
-    backgroundImage: 'url(https://source.unsplash.com/random)',
-    backgroundRepeat: 'no-repeat',
+    backgroundImage: "url(https://source.unsplash.com/random)",
+    backgroundRepeat: "no-repeat",
     backgroundColor:
-      theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
+      theme.palette.type === "light"
+        ? theme.palette.grey[50]
+        : theme.palette.grey[900],
+    backgroundSize: "cover",
+    backgroundPosition: "center",
   },
   paper: {
     margin: theme.spacing(8, 4),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(1),
   },
   submit: {
@@ -79,14 +84,6 @@ export default function SignInSide() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    console.log(
-      "Form Values",
-      userFirstName,
-      userLastName,
-      userPassword,
-      userEmail
-    );
-
     API.createUser({
       first: userFirstName,
       last: userLastName,
@@ -98,48 +95,41 @@ export default function SignInSide() {
       .catch((err) => console.log(err));
   };
 
-
   const handleSignIn = (event) => {
     event.preventDefault();
 
     var userData = {
       email: loginEmail,
-      password: loginPassword
-    }
+      password: loginPassword,
+    };
 
     // Use "logon" for account.js or "signIn" for userController.js
     API.signIn({
       email: loginEmail,
-      password: loginPassword
-    }).then(function (res){
-    console.log(res.data)
-    if (res.data === "Log in successfull"){
-      window.location.replace("/homePage")
-      // "/homePage"
-    }
-    
-  })
+      password: loginPassword,
+    }).then(function (res) {
+      if (res.data === "Log in successfull") {
+        window.location.replace("/homePage");
+      }
+    });
     // If there is no email or password input values, return alert.
     if (!userData.email || !userData.password) {
       return alert("You must enter both a valid E-mail & Password");
     }
-    console.log("Logging in with form values: " + userData.email)
+    console.log("Logging in with form values: " + userData.email);
     // Otherwise we run the loginUser function.
     loginUser(userData.email, userData.password);
-
   };
 
   function loginUser(email, password) {
-    console.log(email, password)
-  };
-
+    console.log(email, password);
+  }
 
   return (
-    <Grid container component="main" className={classes.root} >
+    <Grid container component="main" className={classes.root}>
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
@@ -176,7 +166,6 @@ export default function SignInSide() {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
-
             <ColorButton
               type="submit"
               fullWidth
@@ -185,11 +174,8 @@ export default function SignInSide() {
               className={classes.submit}
             >
               <AuthRoute></AuthRoute>
-                Log In
+              Log In
             </ColorButton>
-
-            {/* ColorButton */}
-            {/* AuthRoute */}
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
@@ -199,7 +185,6 @@ export default function SignInSide() {
             </Grid>
           </form>
         </div>
-
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
@@ -267,24 +252,17 @@ export default function SignInSide() {
                 variant="contained"
                 color="primary"
                 className={classes.submit}
-              // href="/homePage"
-              >Sign Me Up
+              >
+                Sign Me Up
               </Button>
             </ThemeProvider>
             <Grid container justify="flex-end"></Grid>
           </form>
         </div>
-
       </Grid>
-    </Grid >
-  )
+    </Grid>
+  );
 }
-
-
-
-
-
-
 
 // class ColorButton extends React.Component {
 //   handleSignIn = (event) => {
@@ -305,7 +283,6 @@ export default function SignInSide() {
 //       return alert("You must enter both a valid E-mail & Password");
 //     }
 //     console.log("Logging in with form values: " + userData.email)
-
 
 //     state = {
 //       toHomePage: false,
