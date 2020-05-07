@@ -1,5 +1,4 @@
 import React from "react";
-import Nav from "../components/Nav/index";
 import MessageContainer from "../components/Message/MessageContainer";
 import SpotifyFavorites from "../components/SpotifyFavorites";
 import FavVideo from "../components/vids/FavVideo";
@@ -20,7 +19,6 @@ const scopes = [
 function HomePage() {
   return (
     <React.Fragment>
-      {/* <Nav /> */}
       <JumboNav />
       <div className="container home-container">
         <div className="row">
