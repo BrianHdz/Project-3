@@ -5,23 +5,14 @@ import "./app.css";
 import HomePage from "./pages/homePage";
 import SpotifyPage from "./pages/spotifyPage";
 import YoutubePage from "./pages/youtubePage.js";
-import hash from "./hash";
+import hash from "./hash"
+
 
 function App() {
-  const [token, setToken] = useState("");
-  const [redirectUri, setRedirectUri] = useState(
-    "http://localhost:3000/homePage"
-  );
-  const [authEndpoint, setAuth] = useState(
-    "https://accounts.spotify.com/authorize"
-  );
-  const [clientId, setClientId] = useState("3e0ec02d26d940389d29340b4da5bd88");
-  const [scopes, setScopes] = useState([
-    "user-top-read",
-    "user-read-currently-playing",
-    "user-read-playback-state",
-  ]);
 
+  const [token, setToken] = useState("")
+  
+  
   useEffect(() => {
     let _token = hash.access_token;
     if (_token) {
@@ -40,10 +31,7 @@ function App() {
             </Route>
             <Route exact path={"/homePage"}>
               <HomePage
-                authEndpoint={authEndpoint}
-                clientId={clientId}
-                scopes={scopes}
-                redirectUri={redirectUri}
+                token1={token}
               />
             </Route>
             <Route exact path={"/spotifyPage"}>
