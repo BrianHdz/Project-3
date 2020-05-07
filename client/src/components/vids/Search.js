@@ -17,7 +17,7 @@ class Search extends Component {
 
     axios
       .get(
-        `https://www.googleapis.com/youtube/v3/search?&key=${process.env.REACT_APP_YT_KEY}&part=snippet&type=video&maxResults=10&q=${this.state.videoTitle}&videoDuration=${this.state.duration}&order=${this.state.resultsOrder}&videoDefinition=${this.state.definition}&safeSearch=${this.state.safeSearch}`
+        `https://www.googleapis.com/youtube/v3/search?&key=AIzaSyBscG7pF3Q3m7ng6aR2m3z40ea9PLkvmJo&part=snippet&type=video&maxResults=10&q=${this.state.videoTitle}&videoDuration=${this.state.duration}&order=${this.state.resultsOrder}&videoDefinition=${this.state.definition}&safeSearch=${this.state.safeSearch}`
       )
       .then((res) => {
         dispatch({
