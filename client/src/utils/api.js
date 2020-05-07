@@ -16,15 +16,7 @@ export default {
   // to push to routes/api/users.js
   signIn: function (query) {
     return axios.get("/api/users/", { params: { query } });
-
-    // console.log(query)
   },
-
-  // Testing this axios call. It works with controllers/account.js
-  // logIn: function(query){
-  //   axios.get("/api/users/", { params: { query } });
-  //   console.log(query)
-  // },
 
   createSpotify: function (SpotifyData) {
     return axios.post("/api/spotify", SpotifyData);
