@@ -8,8 +8,6 @@ const youtubeController = require("../../controllers/youtubeController");
 
 router.route("/users").post(usersController.create);
 router.route("/users").get(usersController.findOne);
-// router.route("/users").get(account.logon);
-// usersController.create
 
 // Spotify Routes
 router
