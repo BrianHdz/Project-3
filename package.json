@@ -1,5 +1,5 @@
 {
-  "name": "Societé",
+  "name": "mern",
   "version": "1.0.0",
   "description": "Our Project links together the vast source of music, podcasts and entertainment of Spotify with the ever growing expanse of media that is YouTube. Then sprinkles in a bit of a Twitter-esque messaging system to allow the user to talk about music and videos they find from the two API's and save their favorites within their profile to a personal homepage.",
   "main": "server.js",
