@@ -1,4 +1,5 @@
 .card-body {
     background-image: url("../../images/jean-philippe.jpg");
     background-size: cover;
+    clip-path: polygon(91% 7%, 73% 21%, 100% 15%, 100% 83%, 71% 86%, 28% 86%, 0 81%, 0 17%, 27% 20%, 11% 7%);
 }

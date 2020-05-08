@@ -468,4 +468,5 @@ body {
 
 .fancy {
   background-image: url(https://images.unsplash.com/photo-1535478044878-3ed83d5456ef?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2738&q=80);
+  clip-path: polygon(25% 25%, 2% 1%, 11% 50%, 0 94%, 37% 63%, 41% 100%, 68% 65%, 100% 94%, 88% 48%, 100% 16%, 53% 28%, 69% 0);
 }
