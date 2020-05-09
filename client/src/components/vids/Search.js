@@ -131,7 +131,7 @@ class Search extends Component {
                 </div>
                 <button
                   type="submit"
-                  className="btn btn-primary btn-lg btn-block mb-5"
+                  className="btn search-btn search-btn3 btn-lg btn-block mb-5"
                 >
                   Search For Video
                 </button>
