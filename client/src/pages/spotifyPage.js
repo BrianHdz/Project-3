@@ -10,7 +10,7 @@ export const authEndpoint = "https://accounts.spotify.com/authorize";
 // Replace with your app's client ID, redirect URI and desired scopes
 const clientId = "3e0ec02d26d940389d29340b4da5bd88";
 
-const redirectUri = "https://polar-brushlands-16053.herokuapp.com/spotifyPage";
+const redirectUri = "http://localhost:3000/spotifyPage";
 const scopes = [
   "user-top-read",
   "user-read-currently-playing",
@@ -22,7 +22,7 @@ const spotifyWebAPI = new Spotify();
 class SpotifyPage extends Component {
   constructor() {
     super();
-    this.state = {  
+    this.state = {
       nowPlaying: {
         name: "Not Checked",
         image: "",
@@ -32,10 +32,8 @@ class SpotifyPage extends Component {
       search: "",
       searchedItems: [],
       savedItem: "",
-      type: "playlist"
-      
+      type: "playlist",
     };
-    
   }
 
   handleInputChange = (event) => {
@@ -90,7 +88,6 @@ class SpotifyPage extends Component {
   }
 
   getFeatured() {
-
     spotifyWebAPI.getFeaturedPlaylists().then((response) => {
       this.setState({
         featuredPlayLists: response.playlists.items,
@@ -99,11 +96,10 @@ class SpotifyPage extends Component {
   }
 
   getPlaylist() {
-
     spotifyWebAPI
       .searchPlaylists(this.state.search, { limit: 10, market: "US" })
       .then((response) => {
-        console.log(response)
+        console.log(response);
         this.setState({
           searchedItems: response.playlists.items,
         });
@@ -111,11 +107,10 @@ class SpotifyPage extends Component {
   }
 
   getTrack() {
-
     spotifyWebAPI
       .searchTracks(this.state.search, { limit: 10, market: "US" })
       .then((response) => {
-        console.log(response)
+        console.log(response);
         this.setState({
           searchedItems: response.tracks.items,
         });
@@ -123,11 +118,10 @@ class SpotifyPage extends Component {
   }
 
   getAlbum() {
-
     spotifyWebAPI
       .searchAlbums(this.state.search, { limit: 10, market: "US" })
       .then((response) => {
-        console.log(response)
+        console.log(response);
         this.setState({
           searchedItems: response.albums.items,
         });
@@ -135,11 +129,10 @@ class SpotifyPage extends Component {
   }
 
   getArtist() {
-
     spotifyWebAPI
       .searchArtists(this.state.search, { limit: 10, market: "US" })
       .then((response) => {
-        console.log(response)
+        console.log(response);
         this.setState({
           searchedItems: response.artists.items,
         });
@@ -149,7 +142,7 @@ class SpotifyPage extends Component {
   getId(key, key3) {
     this.setState({
       currentURI_ID: key,
-      type: key3
+      type: key3,
     });
   }
 
@@ -157,7 +150,7 @@ class SpotifyPage extends Component {
     API.createSpotify({
       uri: key,
       name: key2,
-      type: key3
+      type: key3,
     })
       .then(console.log("saved playlist"))
       .catch((err) => console.log(err));
@@ -203,7 +196,9 @@ class SpotifyPage extends Component {
                           <button
                             type="button"
                             className="btn btn-dark ml-2"
-                            onClick={() => this.getId(featuredItem.id, featuredItem.type)}
+                            onClick={() =>
+                              this.getId(featuredItem.id, featuredItem.type)
+                            }
                             key={featuredItem.id}
                             key2={featuredItem.name}
                             key3={featuredItem.type}
@@ -229,10 +224,8 @@ class SpotifyPage extends Component {
               </div>
             </Col>
             <Col style={{ width: 375 }} className="mt-2 p-2" size="md-4">
-              <h2 className="search text-light text-center p-2">
-                Search
-              </h2>
-              <input 
+              <h2 className="search text-light text-center p-2">Search</h2>
+              <input
                 onChange={this.handleInputChange}
                 name="search"
                 value={this.state.search}
@@ -240,7 +233,8 @@ class SpotifyPage extends Component {
                 type="text"
                 placeholder="Search Me"
               ></input>
-              <button style={{ width: 355 }}
+              <button
+                style={{ width: 355 }}
                 onClick={this.handleFormSubmit}
                 className="btn3 btn-three"
               >
@@ -273,7 +267,9 @@ class SpotifyPage extends Component {
                           <button
                             type="button"
                             className="btn btn-dark ml-1"
-                            onClick={() => this.getId(searchedItems.id, searchedItems.type)}
+                            onClick={() =>
+                              this.getId(searchedItems.id, searchedItems.type)
+                            }
                             key={searchedItems.id}
                             key2={searchedItems.name}
                             key3={searchedItems.type}
