@@ -6,38 +6,22 @@ import HomePage from "./pages/homePage";
 import SpotifyPage from "./pages/spotifyPage";
 import YoutubePage from "./pages/youtubePage.js";
 import hash from "./hash"
-// import Jumbo from "./components/Jumbo/headnav"
-// import JumboNav from "./components/jumboNav/index"
-// export const authEndpoint = 'https://accounts.spotify.com/authorize';
-// // Replace with your app's client ID, redirect URI and desired scopes
-// const clientId = "3e0ec02d26d940389d29340b4da5bd88";
+import Spotify from "spotify-web-api-js";
 
-// const redirectUri = "http://localhost:3000/homePage";
-// const scopes = [
-//   "user-top-read",
-//   "user-read-currently-playing",
-//   "user-read-playback-state",
-// ];
-// Get the hash of the url
+const spotifyWebAPI = new Spotify();
 
 function App() {
 
   const [token, setToken] = useState("")
-  const [redirectUri, setRedirectUri] = useState("http://localhost:3000/homePage")
-  const [authEndpoint, setAuth] = useState("https://accounts.spotify.com/authorize")
-  const [clientId, setClientId] = useState("3e0ec02d26d940389d29340b4da5bd88")
-  const [scopes, setScopes] = useState(
-    [
-    "user-top-read",
-    "user-read-currently-playing",
-    "user-read-playback-state",
-  ])
+  const[loggedIn, setLoggedIn] = useState(false)
   
   useEffect(() => {
     let _token = hash.access_token;
     if (_token) {
       // Set token
       setToken(_token)
+        spotifyWebAPI.setAccessToken([_token])
+        setLoggedIn(true)
     }
 
 
@@ -63,10 +47,7 @@ function App() {
 
             <Route exact path={"/homePage"}>
               <HomePage
-              authEndpoint={authEndpoint}
-              clientId={clientId}
-              scopes={scopes}
-              redirectUri={redirectUri}
+                token1={token}
               />
             </Route>
 

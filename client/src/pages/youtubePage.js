@@ -8,7 +8,6 @@ function YoutubePage() {
   return (
     <Provider>
       <React.Fragment>
-        {/* <Nav /> */}
         <JumboNav />
         <div className="container youtube-container">
           <Index />

@@ -1,8 +1,6 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { Component } from "react";
 import "./spotify.css";
-import SpotifyPlayer from "react-spotify-web-playback";
 import Spotify from "spotify-web-api-js";
-import Nav from "../components/Nav";
 import Row from "../components/Row";
 import Col from "../components/Col";
 import Visualizer from "../components/Visualizer";
@@ -12,7 +10,7 @@ export const authEndpoint = "https://accounts.spotify.com/authorize";
 // Replace with your app's client ID, redirect URI and desired scopes
 const clientId = "3e0ec02d26d940389d29340b4da5bd88";
 
-const redirectUri = "http://localhost:3000/spotifyPage";
+const redirectUri = "https://polar-brushlands-16053.herokuapp.com/spotifyPage";
 const scopes = [
   "user-top-read",
   "user-read-currently-playing",
@@ -24,9 +22,7 @@ const spotifyWebAPI = new Spotify();
 class SpotifyPage extends Component {
   constructor() {
     super();
-    const params = this.getHashParams();
     this.state = {
-      loggedIn: params.access_token ? true : false,
       nowPlaying: {
         name: "Not Checked",
         image: "",
@@ -36,12 +32,8 @@ class SpotifyPage extends Component {
       search: "",
       searchedItems: [],
       savedItem: "",
-      token: params.access_token,
+      type: "playlist",
     };
-
-    if (params.access_token) {
-      spotifyWebAPI.setAccessToken([params.access_token]);
-    }
   }
 
   handleInputChange = (event) => {
@@ -54,7 +46,22 @@ class SpotifyPage extends Component {
 
   handleFormSubmit = (event) => {
     event.preventDefault();
-    this.getSearch();
+    this.getPlaylist();
+  };
+
+  handleFormSubmit2 = (event) => {
+    event.preventDefault();
+    this.getTrack();
+  };
+
+  handleFormSubmit3 = (event) => {
+    event.preventDefault();
+    this.getAlbum();
+  };
+
+  handleFormSubmit4 = (event) => {
+    event.preventDefault();
+    this.getArtist();
   };
 
   getHashParams() {
@@ -69,11 +76,7 @@ class SpotifyPage extends Component {
   }
 
   getNowPlaying() {
-    // setTimeout
     spotifyWebAPI.getMyCurrentPlaybackState().then((response) => {
-      // if(response.item.name.name === undefined) {
-      //   return
-      // }
       console.log(response);
       this.setState({
         nowPlaying: {
@@ -85,57 +88,77 @@ class SpotifyPage extends Component {
   }
 
   getFeatured() {
-    spotifyWebAPI.setAccessToken(this.props.token1);
     spotifyWebAPI.getFeaturedPlaylists().then((response) => {
-      console.log(response);
-      console.log(response.playlists.items);
-
       this.setState({
         featuredPlayLists: response.playlists.items,
       });
     });
   }
 
-  getSearch() {
-    spotifyWebAPI.setAccessToken(this.props.token1);
+  getPlaylist() {
     spotifyWebAPI
       .searchPlaylists(this.state.search, { limit: 10, market: "US" })
       .then((response) => {
-        // console.log(response.tracks.items)
-
         console.log(response);
-
         this.setState({
-          // searchedItems: response.tracks.items
           searchedItems: response.playlists.items,
         });
       });
   }
 
-  getId(key) {
+  getTrack() {
+    spotifyWebAPI
+      .searchTracks(this.state.search, { limit: 10, market: "US" })
+      .then((response) => {
+        console.log(response);
+        this.setState({
+          searchedItems: response.tracks.items,
+        });
+      });
+  }
+
+  getAlbum() {
+    spotifyWebAPI
+      .searchAlbums(this.state.search, { limit: 10, market: "US" })
+      .then((response) => {
+        console.log(response);
+        this.setState({
+          searchedItems: response.albums.items,
+        });
+      });
+  }
+
+  getArtist() {
+    spotifyWebAPI
+      .searchArtists(this.state.search, { limit: 10, market: "US" })
+      .then((response) => {
+        console.log(response);
+        this.setState({
+          searchedItems: response.artists.items,
+        });
+      });
+  }
+
+  getId(key, key3) {
     this.setState({
       currentURI_ID: key,
+      type: key3,
     });
   }
 
-  saveFavorites(key, key2) {
+  saveFavorites(key, key2, key3) {
     API.createSpotify({
       uri: key,
       name: key2,
+      type: key3,
     })
       .then(console.log("saved playlist"))
       .catch((err) => console.log(err));
   }
 
-  playPlaylist = () => {
-    //   spotifyWebAPI.getMyDevices().then((response) => console.log(response))
-  };
-  // spotifyWebAPI.play({"context_uri": "spotify:album:5ht7ItJgpBH7W6vJ5BqpPr"})
-
   render() {
     return (
       <div>
-        {/* <Nav/> */}
         <div>
           <JumboNav />
         </div>
@@ -153,10 +176,6 @@ class SpotifyPage extends Component {
         </Row>
         <div className="container">
           <Row>
-            {/* <Col style={{maxWidth: 200}} size="md-4" className="mt-3 p-3">
-          <a href="https://spotifyapi1.herokuapp.com/"><button type="button" className="btn btn-dark">Log in with Spotify</button></a>
-        </Col> */}
-
             <Col className="mt-2 p-2" size="md-4">
               <button
                 type="button"
@@ -172,14 +191,17 @@ class SpotifyPage extends Component {
                 {this.state.featuredPlayLists.length > 1
                   ? this.state.featuredPlayLists.map((featuredItem) => {
                       return (
-                        <li className="list-group-item">
+                        <li className="list-group-item spotify-playlist">
                           {featuredItem.name}
                           <button
                             type="button"
                             className="btn btn-dark ml-2"
-                            onClick={() => this.getId(featuredItem.id)}
+                            onClick={() =>
+                              this.getId(featuredItem.id, featuredItem.type)
+                            }
                             key={featuredItem.id}
                             key2={featuredItem.name}
+                            key3={featuredItem.type}
                           >
                             <i class="fas fa-play"></i>
                           </button>
@@ -187,7 +209,8 @@ class SpotifyPage extends Component {
                             onClick={() =>
                               this.saveFavorites(
                                 featuredItem.id,
-                                featuredItem.name
+                                featuredItem.name,
+                                featuredItem.type
                               )
                             }
                             className="btn btn-primary"
@@ -200,37 +223,56 @@ class SpotifyPage extends Component {
                   : ""}
               </div>
             </Col>
-
-            <Col style={{ maxWidth: 400 }} className="mt-2 p-2" size="md-4">
-              <h2 className="search text-light text-center p-2">
-                Search for a Playlist
-              </h2>
+            <Col style={{ width: 375 }} className="mt-2 p-2" size="md-4">
+              <h2 className="search text-light text-center p-2">Search</h2>
               <input
                 onChange={this.handleInputChange}
                 name="search"
                 value={this.state.search}
                 className="form-control"
                 type="text"
-                placeholder="Search Playlist"
+                placeholder="Search Me"
               ></input>
               <button
+                style={{ width: 355 }}
                 onClick={this.handleFormSubmit}
                 className="btn3 btn-three"
               >
-                Click me to Search
+                Search for a Playlist
+              </button>
+              <button
+                onClick={this.handleFormSubmit2}
+                className="btn3 btn-three"
+              >
+                Search for a Track
+              </button>
+              <button
+                onClick={this.handleFormSubmit3}
+                className="btn3 btn-three"
+              >
+                Search for a Album
+              </button>
+              <button
+                onClick={this.handleFormSubmit4}
+                className="btn3 btn-three"
+              >
+                Search for a Artist
               </button>
               <div className="overflow-auto" style={{ maxHeight: 250 }}>
                 {this.state.searchedItems.length > 1
                   ? this.state.searchedItems.map((searchedItems) => {
                       return (
-                        <li className="list-group-item">
+                        <li className="list-group-item spotify-playlist">
                           {searchedItems.name}
                           <button
                             type="button"
                             className="btn btn-dark ml-1"
-                            onClick={() => this.getId(searchedItems.id)}
+                            onClick={() =>
+                              this.getId(searchedItems.id, searchedItems.type)
+                            }
                             key={searchedItems.id}
                             key2={searchedItems.name}
+                            key3={searchedItems.type}
                           >
                             <i className="fas fa-play"></i>
                           </button>
@@ -238,7 +280,8 @@ class SpotifyPage extends Component {
                             onClick={() =>
                               this.saveFavorites(
                                 searchedItems.id,
-                                searchedItems.name
+                                searchedItems.name,
+                                searchedItems.type
                               )
                             }
                             className="btn btn-primary"
@@ -251,18 +294,9 @@ class SpotifyPage extends Component {
                   : ""}
               </div>
             </Col>
-
             <Col className="mt-2 p-2" size="md-4">
-              {/* <button onClick={this.playPlaylist} className="btn btn-dark">button</button> */}
-              {/* <SpotifyPlayer 
-          token={this.props.token1}
-          uris={[this.state.currentURI_ID]}
-          autoPlay={true}
-          showSaveIcon={true}
-          play={true}
-          /> */}
               <iframe
-                src={`https://open.spotify.com/embed/playlist/${this.state.currentURI_ID}`}
+                src={`https://open.spotify.com/embed/${this.state.type}/${this.state.currentURI_ID}`}
                 width="400"
                 height="300"
                 frameborder="0"
@@ -271,24 +305,6 @@ class SpotifyPage extends Component {
               ></iframe>
             </Col>
           </Row>
-
-          {/* <Row>
-          <Col className="mt-3 p-3" size="md-4">
-          {/* <iframe src={this.state.currentURI_ID} width="300" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe> */}
-          {/* </Col>
-        </Row>
-        <Row> */}
-          {/* <Col className="mt-5 p-5" size="md-4">
-            <button type="button" className="btn btn-dark" onClick={() => this.getNowPlaying()}>Check Now Playing</button>
-          </Col>
-          <Col className="mt-5 p-5" size="md-4">
-            <div> Now Playing: 
-            </div>
-            <div><img style={{ width: 100}} src={this.state.nowPlaying.image}></img></div>
-          </Col> */}
-          {/* </Row > */}
-
-          <Row></Row>
         </div>
       </div>
     );

@@ -1,5 +1,4 @@
 import React from "react";
-import Nav from "../components/Nav/index";
 import MessageContainer from "../components/Message/MessageContainer";
 import SpotifyFavorites from "../components/SpotifyFavorites";
 import FavVideo from "../components/vids/FavVideo";
@@ -10,7 +9,7 @@ export const authEndpoint = "https://accounts.spotify.com/authorize";
 // Replace with your app's client ID, redirect URI and desired scopes
 const clientId = "3e0ec02d26d940389d29340b4da5bd88";
 
-const redirectUri = "http://localhost:3000/homePage";
+const redirectUri = "https://polar-brushlands-16053.herokuapp.com/homePage";
 const scopes = [
   "user-top-read",
   "user-read-currently-playing",
@@ -20,7 +19,6 @@ const scopes = [
 function HomePage() {
   return (
     <React.Fragment>
-      {/* <Nav /> */}
       <JumboNav />
       <div className="container home-container">
         <div className="row">

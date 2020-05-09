@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import API from "../../utils/api";
-import Row from "../Row";
-import Col from "../Col";
 import { List, ListItem } from "../List";
 import DeleteBtn from "../DeleteBtn";
 
@@ -24,8 +22,6 @@ function SpotifyFavorites() {
       .catch((err) => console.log(err));
   }
 
-  function setSpotifyPlayerURI(key) {}
-
   return (
     <div className="container">
       {spotifyFavs.length ? (
@@ -33,9 +29,8 @@ function SpotifyFavorites() {
           {spotifyFavs.map((spotifyFav) => {
             return (
               <ListItem key={spotifyFav._id}>
-                {/* <strong>{spotifyFav.name}</strong> */}
                 <iframe
-                  src={`https://open.spotify.com/embed/playlist/${spotifyFav.uri}`}
+                  src={`https://open.spotify.com/embed/${spotifyFav.type}/${spotifyFav.uri}`}
                   width="305"
                   height="200"
                   frameborder="0"

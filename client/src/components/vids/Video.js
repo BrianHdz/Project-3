@@ -20,7 +20,7 @@ const Video = (props) => {
         <Iframe
           width="540"
           height="315"
-          src={`http://www.youtube.com/embed/${video.videoId} `}
+          src={`https://www.youtube.com/embed/${video.videoId} `}
           frameBorder="0"
           allowFullScreen
         />

@@ -7,7 +7,7 @@ class Search extends Component {
   state = {
     videoTitle: "",
     duration: "any",
-    resultsOrder: "date",
+    resultsOrder: "relevance",
     definition: "any",
     safeSearch: "none",
   };
@@ -27,7 +27,7 @@ class Search extends Component {
         this.setState({
           videoTitle: "",
           duration: "any",
-          resultsOrder: "date",
+          resultsOrder: "relevance",
           definition: "any",
           safeSearch: "none",
         });
@@ -72,9 +72,9 @@ class Search extends Component {
                       value={this.state.resultsOrder}
                       onChange={this.onChange}
                     >
-                      <option value="date">Date</option>
-                      <option value="rating">Rating</option>
                       <option value="relevance">Relevance</option>
+                      <option value="rating">Rating</option>
+                      <option value="date">Date</option>
                       <option value="title">Title</option>
                       <option value="viewCount">View Count</option>
                     </select>
@@ -131,7 +131,7 @@ class Search extends Component {
                 </div>
                 <button
                   type="submit"
-                  className="btn btn-primary btn-lg btn-block mb-5"
+                  className="btn search-btn search-btn3 btn-lg btn-block mb-5"
                 >
                   Search For Video
                 </button>

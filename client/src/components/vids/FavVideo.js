@@ -30,7 +30,7 @@ const FavVideo = () => {
                 <div className="card mb-2 shadow-sm">
                   <Iframe
                     height="240"
-                    src={`http://www.youtube.com/embed/${youtubeFav.favorites} `}
+                    src={`https://www.youtube.com/embed/${youtubeFav.favorites} `}
                     frameBorder="0"
                     allowFullScreen
                   />
