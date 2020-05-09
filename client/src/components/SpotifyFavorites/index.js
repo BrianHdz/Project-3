@@ -30,7 +30,7 @@ function SpotifyFavorites() {
             return (
               <ListItem key={spotifyFav._id}>
                 <iframe
-                  src={`https://open.spotify.com/embed/playlist/${spotifyFav.uri}`}
+                  src={`https://open.spotify.com/embed/${spotifyFav.type}/${spotifyFav.uri}`}
                   width="305"
                   height="200"
                   frameborder="0"
