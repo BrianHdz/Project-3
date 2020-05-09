@@ -264,39 +264,3 @@ export default function SignInSide() {
   );
 }
 
-// class ColorButton extends React.Component {
-//   handleSignIn = (event) => {
-//     event.preventDefault();
-
-//     var userData = {
-//       email: loginEmail,
-//       password: loginPassword
-//     }
-
-//     // Use "logon" for account.js or "signIn" for userController.js
-//     API.signIn({
-//       email: loginEmail,
-//       password: loginPassword
-//     })
-//     // If there is no email or password input values, return alert.
-//     if (!userData.email || !userData.password) {
-//       return alert("You must enter both a valid E-mail & Password");
-//     }
-//     console.log("Logging in with form values: " + userData.email)
-
-//     state = {
-//       toHomePage: false,
-//     }
-//     // Otherwise we run the loginUser function.
-//     handleLoginUser = (user) => {
-//       saveUser(user)
-//         .then(() => this.setState(() => ({
-//           toHomePage: true
-//         })))
-//     },
-//       render() {
-//       if (this.state.toHomePage === true) {
-//         <Redirect to='/homePage' />
-//       }
-//     }
-//   }
