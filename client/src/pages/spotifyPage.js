@@ -10,8 +10,8 @@ export const authEndpoint = "https://accounts.spotify.com/authorize";
 // Replace with your app's client ID, redirect URI and desired scopes
 const clientId = "3e0ec02d26d940389d29340b4da5bd88";
 
-// const redirectUri = "https://polar-brushlands-16053.herokuapp.com/spotifyPage";
-const redirectUri = "http://localhost:3000/spotifyPage";
+const redirectUri = "https://polar-brushlands-16053.herokuapp.com/spotifyPage";
+// const redirectUri = "http://localhost:3000/spotifyPage";
 const scopes = [
   "user-top-read",
   "user-read-currently-playing",
@@ -186,6 +186,7 @@ class SpotifyPage extends Component {
           <Row>
             <Col className="mt-2 p-2" size="md-4">
               <button
+                style={{width:375}}
                 type="button"
                 className="btn3 btn-three d-block mt-3"
                 onClick={() => this.getFeatured()}
@@ -265,7 +266,7 @@ class SpotifyPage extends Component {
               >
                 Search for a Artist
               </button>
-              <div className="overflow-auto" style={{ maxHeight: 250 }}>
+              <div className="overflow-auto" style={{ maxHeight: 240 }}>
                 {this.state.searchedItems.length > 1
                   ? this.state.searchedItems.map((searchedItems) => {
                       return (
