@@ -10,7 +10,8 @@ export const authEndpoint = "https://accounts.spotify.com/authorize";
 // Replace with your app's client ID, redirect URI and desired scopes
 const clientId = "3e0ec02d26d940389d29340b4da5bd88";
 
-const redirectUri = "https://polar-brushlands-16053.herokuapp.com/spotifyPage";
+// const redirectUri = "https://polar-brushlands-16053.herokuapp.com/spotifyPage";
+const redirectUri = "http://localhost:3000/spotifyPage";
 const scopes = [
   "user-top-read",
   "user-read-currently-playing",
@@ -246,19 +247,19 @@ class SpotifyPage extends Component {
               >
                 Search for a Playlist
               </button>
-              <button
+              <button style={{ width: 355 }}
                 onClick={this.handleFormSubmit2}
                 className="btn3 btn-three"
               >
                 Search for a Track
               </button>
-              <button
+              <button style={{ width: 355 }}
                 onClick={this.handleFormSubmit3}
                 className="btn3 btn-three"
               >
                 Search for a Album
               </button>
-              <button
+              <button style={{ width: 355 }}
                 onClick={this.handleFormSubmit4}
                 className="btn3 btn-three"
               >
