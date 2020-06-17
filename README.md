@@ -2,7 +2,7 @@
 -------------------------------------------
 
 Here's a link to the deployed page through Herkou: <br>
-https://polar-brushlands-16053.herokuapp.com/youtubePage
+https://polar-brushlands-16053.herokuapp.com
 
 ![Societé - Project3 Screenshot](./client/src/images/appThumbnail.JPG)
 -------------------------------------------
