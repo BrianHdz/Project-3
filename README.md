@@ -16,3 +16,12 @@ Team Members:<br>
 - Mafry Rivera<br>
 - Ammar Alazzawi<br>
 - Brian Hernandez<br>
+
+<br>
+
+Technologies used: <br>
+React.js <br>
+Material UI <br>
+MongoDB <br>
+Spotify Web API <br>
+Google Web API <br>
